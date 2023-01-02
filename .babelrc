@@ -1,0 +1,8 @@
+{
+    "presets": [
+        "@babel/env",
+        // es6 -> es5
+        "@babel/react"
+        // jsx -> js
+    ]
+}

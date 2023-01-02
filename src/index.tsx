@@ -1,10 +1,11 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
 import { PokePedia } from './pages/PokePedia';
 import { Home } from './pages/Home';
+import { GetCoins } from './pages/GetCoins';
 
 const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
         path: '/pokepedia',
         element: <PokePedia />,
     },
+    {
+        path: '/getCoins',
+        element: <GetCoins />,
+    },
 ]);
 
 const root = ReactDOM.createRoot(
@@ -22,11 +27,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <RecoilRoot>
+            <RouterProvider router={router} />
+        </RecoilRoot>
     </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

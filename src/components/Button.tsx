@@ -1,6 +1,6 @@
 import React from 'react';
 
-type ButtonProps = {
+export type ButtonProps = {
     className: string;
     onClick: () => void;
     children: React.ReactNode;
@@ -8,7 +8,7 @@ type ButtonProps = {
 
 export const Button = ({ className, children, onClick }: ButtonProps) => {
     return (
-        <button className={className} onClick={onClick}>
+        <button type="button" className={className} onClick={onClick}>
             {children}
         </button>
     );

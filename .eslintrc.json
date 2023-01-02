@@ -17,6 +17,7 @@
         "react/function-component-definition": [
             1,
             { "namedComponents": "arrow-function" }
-        ]
+        ],
+        "no-undef": 0
     }
 }
