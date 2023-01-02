@@ -6,7 +6,6 @@
     },
     "ignorePatterns": ["build", "dist", "public"],
     "parser": "@babel/eslint-parser",
-    "babelOptions": { "configFile": "./.babelrc" },
     "parserOptions": {
         "requireConfigFile": "false"
     },
