@@ -6,8 +6,18 @@
     },
     "ignorePatterns": ["build", "dist", "public"],
     "parser": "@babel/eslint-parser",
+    "babelOptions": { "configFile": "./.babelrc" },
+    "parserOptions": {
+        "requireConfigFile": "false"
+    },
     "rules": {
         "react/jsx-filename-extension": [0],
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "import/no-unresolved": "off",
+        "import/prefer-default-export": "off",
+        "react/function-component-definition": [
+            1,
+            { "namedComponents": "arrow-function" }
+        ]
     }
 }
