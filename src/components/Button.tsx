@@ -1,15 +1,17 @@
 import React from 'react';
 
 export type ButtonProps = {
-    className: string;
+    className?: string;
     onClick: () => void;
     children: React.ReactNode;
 };
 
-export const Button = ({ className, children, onClick }: ButtonProps) => {
+export const Button = ({ className = '', children, onClick }: ButtonProps) => {
     return (
-        <button type="button" className={className} onClick={onClick}>
-            {children}
-        </button>
+        <div className={className}>
+            <button type="button" onClick={onClick}>
+                {children}
+            </button>
+        </div>
     );
 };

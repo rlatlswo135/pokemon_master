@@ -1,13 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 
 export const Home = () => {
     return (
-        <>
-            <div className="text-3xl font-bold underline">Hello world!</div>
-            <Button className="test" onClick={() => console.log('test')}>
-                buttonTest
-            </Button>
-        </>
+        <div
+            id="home"
+            className="container w-screen h-screen min-w-full min-h-full border-4 border-black font-bold text-lg"
+        >
+            <div className="absolute w-full top-3/4 flex items-center justify-center">
+                <Link to="/pokepedia">
+                    <Button
+                        className="mr-4 hover:text-red-600"
+                        onClick={() => console.log('test')}
+                    >
+                        Start
+                    </Button>
+                </Link>
+                <Button
+                    className="ml-4 hover:text-red-600"
+                    onClick={() => console.log('test')}
+                >
+                    How To Play
+                </Button>
+            </div>
+        </div>
     );
 };
