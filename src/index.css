@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'PokeFont';
+    src: url('./assets/font/Pokemon Classic.ttf');
+}
+
+#root {
+    font-family: 'PokeFont';
+}
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
@@ -14,4 +23,10 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
+}
+
+#home {
+    background-image: url('./assets/home.gif');
+    background-position: center;
+    background-repeat: no-repeat;
 }
