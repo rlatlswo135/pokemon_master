@@ -6,9 +6,10 @@ import './index.css';
 import { Main } from 'components/Main';
 import { MyPage } from 'pages/MyPage';
 import { MyBags } from 'pages/MyBags';
-import { PokePedia } from './pages/PokePedia';
+import { Store } from 'pages/Store';
 import { Home } from './pages/Home';
 import { GetCoins } from './pages/GetCoins';
+import { PokePedia } from './pages/PokePedia';
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,14 @@ const router = createBrowserRouter([
         element: (
             <Main>
                 <MyBags />
+            </Main>
+        ),
+    },
+    {
+        path: '/store',
+        element: (
+            <Main>
+                <Store />
             </Main>
         ),
     },
