@@ -6,7 +6,7 @@ import { money } from '../atoms/money';
 export const Header = () => {
     const [coins, setCoins] = useRecoilState(money);
     const routeItems = useMemo(
-        () => ['myPage', 'pokepedia', 'getCoins', 'myBags', 'convenienceStore'],
+        () => ['myPage', 'pokepedia', 'getCoins', 'myBags', 'store'],
         []
     );
 

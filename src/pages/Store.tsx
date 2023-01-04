@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { Button } from 'components/common/Button';
 import { money } from 'atoms/money';
 
-export const ConvenienceStore = () => {
+export const Store = () => {
     const [coins, setCoins] = useRecoilState<number>(money);
 
     const breads = useMemo(

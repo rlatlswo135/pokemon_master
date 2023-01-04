@@ -5,7 +5,6 @@ import { money } from 'atoms/money';
 
 export const GetCoins = () => {
     const [coins, setCoins] = useRecoilState(money);
-    console.log('````````````coins````````````', coins);
 
     const clickHandler = useCallback(() => {
         setCoins((prev) => {
@@ -16,6 +15,7 @@ export const GetCoins = () => {
             return prev + 100;
         });
     }, []);
+
     return (
         <div
             id="getCoins"

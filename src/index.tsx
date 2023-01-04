@@ -6,7 +6,7 @@ import './index.css';
 import { Main } from 'components/Main';
 import { MyPage } from 'pages/MyPage';
 import { MyBags } from 'pages/MyBags';
-import { ConvenienceStore } from 'pages/ConvenienceStore';
+import { Store } from 'pages/Store';
 import { Home } from './pages/Home';
 import { GetCoins } from './pages/GetCoins';
 import { PokePedia } from './pages/PokePedia';
@@ -49,10 +49,10 @@ const router = createBrowserRouter([
         ),
     },
     {
-        path: '/convenienceStore',
+        path: '/store',
         element: (
             <Main>
-                <ConvenienceStore />
+                <Store />
             </Main>
         ),
     },
