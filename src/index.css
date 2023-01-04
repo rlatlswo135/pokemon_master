@@ -4,7 +4,8 @@
 
 @font-face {
     font-family: 'PokeFont';
-    src: url('./assets/font/Pokemon Classic.ttf');
+    src: url('./assets/font/Poke1.ttf') format('truetype');
+    font-weight: 700;
 }
 
 #root {
@@ -26,7 +27,41 @@ code {
 }
 
 #home {
-    background-image: url('./assets/home.gif');
+    background-image: url('./assets/background/home.gif');
     background-position: center;
     background-repeat: no-repeat;
+}
+#getCoins::before {
+    content: '';
+    opacity: 0.3;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: #004;
+}
+#getCoins {
+    background-image: url('./assets/background/getCoins.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* #store::before {
+    content: '';
+    opacity: 0.2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: #004;
+} */
+
+#store {
+    background-image: url('./assets/background/convin.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
