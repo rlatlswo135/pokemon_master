@@ -5,7 +5,7 @@ export const MyPage = () => {
     return (
         <div
             id="myPage"
-            className="bg-stone-500/90 w-screen h-screen min-h-full min-w-full p-24"
+            className="bg-stone-500/90 w-screen h-screen min-h-full min-w-full py-60"
         >
             <div className="w-full h-full flex">
                 <section id="profile_img" className="h-full w-1/4 border-2">
