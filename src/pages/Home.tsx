@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getOneGenerationPokemon } from 'api/api';
+import { pokeList } from 'atoms/pokemon';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { Button } from '../components/common/Button';
 
 export const Home = () => {
+    const [pokemonList, setPokemonList] = useRecoilState(pokeList);
+
+    useEffect(() => {
+        getOneGenerationPokemon().then((item) =>
+            setPokemonList(item.pokemon_species)
+        );
+    }, []);
+
     return (
         <div
             id="home"

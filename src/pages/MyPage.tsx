@@ -1,12 +1,10 @@
 /* eslint-disable global-require */
 import React from 'react';
+import { Container } from 'components/common/Container';
 
 export const MyPage = () => {
     return (
-        <div
-            id="myPage"
-            className="bg-stone-500/90 w-screen h-screen min-h-full min-w-full py-60"
-        >
+        <Container className="py-60" color="bg-stone-500/90" id="myPage">
             <div className="w-full h-full flex">
                 <section id="profile_img" className="h-full w-1/4 border-2">
                     <img
@@ -22,6 +20,6 @@ export const MyPage = () => {
                     모은숫자 확률 및 이름 등등 정보적기
                 </section>
             </div>
-        </div>
+        </Container>
     );
 };
