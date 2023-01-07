@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import React, { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
+import { Container } from 'components/common/Container';
 import { Button } from 'components/common/Button';
 import { money } from 'atoms/money';
 
@@ -23,10 +24,7 @@ export const Store = () => {
     }, []);
 
     return (
-        <div
-            id="store"
-            className="container w-screen h-screen min-h-full min-w-full flex justify-center p-24 bg-opacity-30"
-        >
+        <Container className="flex justify-center bg-opacity-30" id="store">
             <div className="container relative flex justify-evenly w-full h-full p-5 bg-slate-100/20">
                 {breads &&
                     breads.map((bread) => (
@@ -53,6 +51,6 @@ export const Store = () => {
                         </div>
                     ))}
             </div>
-        </div>
+        </Container>
     );
 };

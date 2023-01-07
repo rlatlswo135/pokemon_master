@@ -1,5 +1,6 @@
 import React from 'react';
+import { Container } from 'components/common/Container';
 
 export const MyBags = () => {
-    return <div>MyBags</div>;
+    return <Container>myBags</Container>;
 };
