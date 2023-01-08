@@ -16,7 +16,7 @@ export const Container = ({
     return (
         <div
             id={id}
-            className={`container w-screen h-screen min-h-full min-w-full p-24 ${className} ${color}`}
+            className={`container w-screen h-screen max-w-full min-h-full min-w-full p-24 ${className} ${color}`}
         >
             {children}
         </div>
