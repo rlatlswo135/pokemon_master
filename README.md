@@ -6,5 +6,4 @@
 ### 스티커를 까서 도감을 채워보자!
 
 ## 크헬헬헬
-<img width="438" alt="스크린샷 2023-01-08 오후 7 18 27" src="https://user-images.githubusercontent.com/81791674/211190762-41282623-c40a-434b-9f4c-503097831bad.png">
-
+<img width="428" alt="사악한꼬부기" src="https://user-images.githubusercontent.com/81791674/211190831-49aa48bd-5f6c-457b-80ef-c81e2835b87d.png">
