@@ -2,7 +2,7 @@ import React from 'react';
 import tw from 'tailwind-styled-components';
 
 type ContainerProps = {
-    addStyle?: string;
+    addstyle?: string;
     children: React.ReactNode;
     id?: string;
     color?: string;
@@ -11,13 +11,13 @@ type ContainerProps = {
 
 const Container = ({
     children,
-    addStyle = '',
+    addstyle = '',
     image = '',
     id = '',
     color = '',
 }: ContainerProps) => {
     return (
-        <Div id={id} color={color} addStyle={addStyle} image={image}>
+        <Div id={id} color={color} addstyle={addstyle} image={image}>
             {children}
         </Div>
     );
@@ -26,13 +26,13 @@ const Container = ({
 export default React.memo(Container);
 
 type DivProps = {
-    addStyle: string;
+    addstyle: string;
     color: string;
     image: string;
 };
 const Div = tw.div<DivProps>`
-container w-screen h-screen max-w-full min-h-full min-w-full p-24
-${({ addStyle, color }) => `${addStyle} ${color}`}
+container w-screen h-screen max-w-full min-h-full min-w-full p-24 font-pokeFont
+${({ addstyle, color }) => `${addstyle} ${color}`}
 ${({ image }) => {
     if (image.length) return `${image} bg-no-repeat bg-cover bg-center`;
     return '';

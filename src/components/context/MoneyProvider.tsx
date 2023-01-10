@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useMemo, useState } from 'react';
+import { LUCKY, SUPER_LUCKY } from 'constants/money';
 
 type ContextProviderType = {
     children: React.ReactNode;
@@ -16,11 +17,9 @@ export const MoneyProvider = ({ children }: ContextProviderType) => {
     const getMoney = useCallback(
         () =>
             setMoney((prev) => {
-                console.log('````````````prev````````````', prev);
-                if (Math.random() < 0.05) {
-                    console.log('````````````대박!````````````');
-                    return prev + 1000;
-                }
+                const per: number = Math.random();
+                if (per < SUPER_LUCKY) return prev + 10000;
+                if (per < LUCKY) return prev + 1000;
                 return prev + 100;
             }),
         []
@@ -29,9 +28,7 @@ export const MoneyProvider = ({ children }: ContextProviderType) => {
     const spendMoney = useCallback(
         () =>
             setMoney((prev) => {
-                console.log('spend', prev);
                 if (prev >= 1200) return prev - 1200;
-                console.log('````````````this````````````');
                 return prev;
             }),
         []
