@@ -28,7 +28,8 @@ export const Home = () => {
 };
 
 const HomeDiv = tw.div`
-container w-screen h-screen min-w-full min-h-full text-lg   
+container w-screen h-screen min-w-full min-h-full text-lg
+bg-homeImage bg-no-repeat bg-center
 `;
 
 const ButtonsDiv = tw.div`

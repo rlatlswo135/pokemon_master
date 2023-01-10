@@ -15,7 +15,11 @@ const Store = () => {
     );
 
     return (
-        <Container className="flex justify-center bg-opacity-30" id="store">
+        <Container
+            addStyle="flex justify-center bg-opacity-30"
+            id="store"
+            image="bg-defaultImage"
+        >
             <div className="container relative flex justify-evenly w-full h-full p-5 bg-slate-100/20">
                 {breads &&
                     breads.map((bread) => (

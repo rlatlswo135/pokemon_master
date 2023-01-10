@@ -4,7 +4,12 @@ import Container from 'components/common/Container';
 
 export const MyPage = () => {
     return (
-        <Container className="py-60" color="bg-stone-500/90" id="myPage">
+        <Container
+            addStyle="py-60"
+            // color="bg-stone-500/90"
+            image="bg-defaultImage"
+            id="myPage"
+        >
             <div className="w-full h-full flex">
                 <section id="profile_img" className="h-full w-1/4 border-2">
                     <img
