@@ -1,12 +1,15 @@
-import { MoneyContext, useMoneyContext } from 'context/MoneyProvider';
 import React, { useMemo, useContext } from 'react';
-import tw from 'tailwind-styled-components';
 import { Link, useLocation } from 'react-router-dom';
+import tw from 'tailwind-styled-components';
+import { MyBagContext, useMyBagContext } from 'context/MyBagProvider';
+import { MoneyContext, useMoneyContext } from 'context/MoneyProvider';
 import Button from './common/Button';
 
 export const Header = () => {
     // let money, getMoney;
     const { money, getMoney, spendMoney } = useMoneyContext() as MoneyContext;
+    const { isBagOpen, toggleBagOpen } = useMyBagContext() as MyBagContext;
+
     const { pathname: pathName } = useLocation();
 
     const routeItems = useMemo(() => ['myPage', 'pokepedia', 'store'], []);
@@ -34,6 +37,7 @@ export const Header = () => {
                     {url}
                 </Link>
             ))}
+            <Button onClick={toggleBagOpen}>MyBag</Button>
         </header>
     );
 };

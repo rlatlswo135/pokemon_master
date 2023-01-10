@@ -40,7 +40,7 @@ const Store = () => {
                                 }`}
                                 onClick={spendMoney}
                             >
-                                {money < 1200 ? '구매불가' : '1,200'}
+                                {money < 1200 ? '1,200!' : '1,200'}
                             </Button>
                         </div>
                     ))}

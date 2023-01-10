@@ -11,6 +11,9 @@ module.exports = {
             fontFamily: {
                 pokeFont: ['PokeFont'],
             },
+            inset: {
+                '5/6': '83.333333%',
+            },
         },
     },
     plugins: [],

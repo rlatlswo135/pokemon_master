@@ -2,23 +2,26 @@ import React, {
     createContext,
     Dispatch,
     SetStateAction,
+    useCallback,
     useMemo,
     useState,
 } from 'react';
 import { useMakeContext } from 'hooks/useMakeContext';
 import { IContextProvider } from './type';
 
-type MyBagContext = {
-    isOpen: boolean;
-    setIsOpen: Dispatch<SetStateAction<boolean>>;
+export type MyBagContext = {
+    isBagOpen: boolean;
+    toggleBagOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const myBagContext = createContext<MyBagContext | undefined>(undefined);
 
 const MyBagProvider = ({ children }: IContextProvider) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isBagOpen, setIsBagOpen] = useState<boolean>(false);
 
-    const value = useMemo(() => ({ isOpen, setIsOpen }), []);
+    const toggleBagOpen = useCallback(() => setIsBagOpen((prev) => !prev), []);
+
+    const value = useMemo(() => ({ isBagOpen, toggleBagOpen }), [isBagOpen]);
 
     return (
         <myBagContext.Provider value={value}>{children}</myBagContext.Provider>
