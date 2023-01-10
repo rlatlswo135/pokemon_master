@@ -8,9 +8,11 @@
     font-weight: 700;
 }
 
+/*
 #root {
     font-family: 'PokeFont';
 }
+*/
 
 body {
     margin: 0;
@@ -26,11 +28,6 @@ code {
         monospace;
 }
 
-#home {
-    background-image: url('./assets/background/home.gif');
-    background-position: center;
-    background-repeat: no-repeat;
-}
 #getCoins::before {
     content: '';
     opacity: 0.3;
@@ -40,28 +37,4 @@ code {
     right: 0px;
     bottom: 0px;
     background-color: #004;
-}
-#getCoins {
-    background-image: url('./assets/background/getCoins.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/* #store::before {
-    content: '';
-    opacity: 0.2;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    background-color: #004;
-} */
-
-#store {
-    background-image: url('./assets/background/convin.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }

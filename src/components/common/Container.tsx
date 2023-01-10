@@ -1,24 +1,40 @@
 import React from 'react';
+import tw from 'tailwind-styled-components';
 
-type ContainerType = {
-    className?: string;
+type ContainerProps = {
+    addStyle?: string;
     children: React.ReactNode;
     id?: string;
     color?: string;
+    image?: string;
 };
 
-export const Container = ({
-    className,
+const Container = ({
     children,
+    addStyle = '',
+    image = '',
     id = '',
     color = '',
-}: ContainerType) => {
+}: ContainerProps) => {
     return (
-        <div
-            id={id}
-            className={`container w-screen h-screen max-w-full min-h-full min-w-full p-24 ${className} ${color}`}
-        >
+        <Div id={id} color={color} addStyle={addStyle} image={image}>
             {children}
-        </div>
+        </Div>
     );
 };
+
+export default React.memo(Container);
+
+type DivProps = {
+    addStyle: string;
+    color: string;
+    image: string;
+};
+const Div = tw.div<DivProps>`
+container w-screen h-screen max-w-full min-h-full min-w-full p-24
+${({ addStyle, color }) => `${addStyle} ${color}`}
+${({ image }) => {
+    if (image.length) return `${image} bg-no-repeat bg-cover bg-center`;
+    return '';
+}}
+`;
