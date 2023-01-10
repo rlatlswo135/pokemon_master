@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+// const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -9,7 +9,7 @@ module.exports = {
                 homeImage: "url('/src/assets/background/home.gif')",
             },
             fontFamily: {
-                sans: ['PokeFont', ...defaultTheme.fontFamily.sans],
+                pokeFont: ['PokeFont'],
             },
         },
     },

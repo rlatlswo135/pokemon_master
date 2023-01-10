@@ -3,7 +3,8 @@ import tw from 'tailwind-styled-components';
 
 export type ButtonProps = {
     className?: string;
-    onClick?: () => void;
+    // 수정해야함 any () => void Dispatch .setState랑 합쳐지는거때문에이럼
+    onClick?: any;
     children: React.ReactNode;
     btnClassName?: string;
 };

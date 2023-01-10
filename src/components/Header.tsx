@@ -1,16 +1,12 @@
-import React, {
-    useState,
-    useEffect,
-    useMemo,
-    useCallback,
-    useContext,
-} from 'react';
+import { MoneyContext, useMoneyContext } from 'context/MoneyProvider';
+import React, { useMemo, useContext } from 'react';
+import tw from 'tailwind-styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import Button from './common/Button';
-import { MoneyContext } from './context/MoneyProvider';
 
 export const Header = () => {
-    const { money, getMoney } = useContext(MoneyContext);
+    // let money, getMoney;
+    const { money, getMoney, spendMoney } = useMoneyContext() as MoneyContext;
     const { pathname: pathName } = useLocation();
 
     const routeItems = useMemo(() => ['myPage', 'pokepedia', 'store'], []);
@@ -30,7 +26,9 @@ export const Header = () => {
             {routeItems.map((url) => (
                 <Link
                     key={`header-url-${url}`}
-                    className="hover:text-red-600"
+                    className={`${
+                        pathName === `/${url}` ? 'text-red-600' : ''
+                    } hover:text-red-600`}
                     to={`/${url}`}
                 >
                     {url}

@@ -5,7 +5,7 @@ import Container from 'components/common/Container';
 export const MyPage = () => {
     return (
         <Container
-            addStyle="py-60"
+            addstyle="py-60"
             // color="bg-stone-500/90"
             image="bg-defaultImage"
             id="myPage"

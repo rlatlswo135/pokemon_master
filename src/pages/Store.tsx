@@ -1,13 +1,12 @@
 /* eslint-disable global-require */
 import React, { useCallback, useContext, useMemo } from 'react';
+import tw from 'tailwind-styled-components';
 import Container from 'components/common/Container';
 import Button from 'components/common/Button';
-import { MoneyContext } from 'components/context/MoneyProvider';
+import { MoneyContext, useMoneyContext } from 'context/MoneyProvider';
 
 const Store = () => {
-    const test = useContext(MoneyContext);
-    console.log('````````````test````````````', test);
-    const { money, getMoney, spendMoney } = useContext(MoneyContext);
+    const { money, getMoney, spendMoney } = useMoneyContext() as MoneyContext;
 
     const breads = useMemo(
         () => ['digda', 'fire', 'ghost', 'pika', 'purin', 'rocket', 'tutle'],
@@ -16,11 +15,11 @@ const Store = () => {
 
     return (
         <Container
-            addStyle="flex justify-center bg-opacity-30"
+            addstyle="flex justify-center bg-opacity-30"
             id="store"
             image="bg-defaultImage"
         >
-            <div className="container relative flex justify-evenly w-full h-full p-5 bg-slate-100/20">
+            <SubContainer>
                 {breads &&
                     breads.map((bread) => (
                         <div
@@ -45,9 +44,13 @@ const Store = () => {
                             </Button>
                         </div>
                     ))}
-            </div>
+            </SubContainer>
         </Container>
     );
 };
 
 export default React.memo(Store);
+
+const SubContainer = tw.div`
+container relative flex justify-evenly w-full h-full p-5 bg-slate-100/20    
+`;

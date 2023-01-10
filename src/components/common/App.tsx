@@ -2,6 +2,7 @@ import React from 'react';
 import { Header } from 'components/Header';
 import { Home, GetCoins, PokePedia, Store, MyPage } from 'pages';
 import { Route, Routes } from 'react-router-dom';
+import { MyBag } from 'components/MyBag';
 
 export const App = () => {
     return (
@@ -13,6 +14,7 @@ export const App = () => {
                 <Route path="/myPage" element={<MyPage />} />
                 <Route path="/store" element={<Store />} />
             </Routes>
+            <MyBag />
         </>
     );
 };
