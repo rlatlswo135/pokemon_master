@@ -3,12 +3,10 @@ import React, { useCallback, useContext, useMemo } from 'react';
 import tw from 'tailwind-styled-components';
 import Container from 'components/common/Container';
 import Button from 'components/common/Button';
-import { MoneyContext } from 'components/context/MoneyProvider';
+import { MoneyContext, useMoneyContext } from 'context/MoneyProvider';
 
 const Store = () => {
-    const test = useContext(MoneyContext);
-    console.log('````````````test````````````', test);
-    const { money, getMoney, spendMoney } = useContext(MoneyContext);
+    const { money, getMoney, spendMoney } = useMoneyContext() as MoneyContext;
 
     const breads = useMemo(
         () => ['digda', 'fire', 'ghost', 'pika', 'purin', 'rocket', 'tutle'],

@@ -31,7 +31,7 @@ type DivProps = {
     image: string;
 };
 const Div = tw.div<DivProps>`
-container w-screen h-screen max-w-full min-h-full min-w-full p-24 font-pokeFont
+container w-screen h-screen max-h-full max-w-full p-24 font-pokeFont overflow-hidden
 ${({ addstyle, color }) => `${addstyle} ${color}`}
 ${({ image }) => {
     if (image.length) return `${image} bg-no-repeat bg-cover bg-center`;

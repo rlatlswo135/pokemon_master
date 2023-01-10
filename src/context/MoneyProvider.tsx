@@ -1,17 +1,25 @@
-import React, { createContext, useCallback, useMemo, useState } from 'react';
+import React, {
+    createContext,
+    Dispatch,
+    SetStateAction,
+    useCallback,
+    useContext,
+    useMemo,
+    useState,
+} from 'react';
+import { useMakeContext } from 'hooks/useMakeContext';
 import { LUCKY, SUPER_LUCKY } from 'constants/money';
+import { IContextProvider } from './type';
 
-type ContextProviderType = {
-    children: React.ReactNode;
+export type MoneyContext = {
+    money: number;
+    getMoney: Dispatch<SetStateAction<number>>;
+    spendMoney: Dispatch<SetStateAction<number>>;
 };
 
-export const MoneyContext = createContext({
-    money: 0,
-    getMoney: () => {},
-    spendMoney: () => {},
-});
+const moneyContext = createContext<MoneyContext | undefined>(undefined);
 
-export const MoneyProvider = ({ children }: ContextProviderType) => {
+const MoneyProvider = ({ children }: IContextProvider) => {
     const [money, setMoney] = useState<number>(0);
 
     const getMoney = useCallback(
@@ -44,6 +52,10 @@ export const MoneyProvider = ({ children }: ContextProviderType) => {
     );
 
     return (
-        <MoneyContext.Provider value={value}>{children}</MoneyContext.Provider>
+        <moneyContext.Provider value={value}>{children}</moneyContext.Provider>
     );
 };
+
+const useMoneyContext = () => useMakeContext(moneyContext);
+
+export { MoneyProvider, useMoneyContext };

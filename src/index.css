@@ -6,8 +6,13 @@
 
 @tailwind base;
 @layer base {
-    #root {
+    body {
         @apply font-pokeFont;
+        /*
+        @apply 이후 적용할 tailwindcss 문법 적용
+        ex) h1 text-xl
+        */
+        overflow: hidden;
     }
 }
 @tailwind components;

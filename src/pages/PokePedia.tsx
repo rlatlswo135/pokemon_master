@@ -4,7 +4,7 @@ import tw from 'tailwind-styled-components';
 import { pokeList } from 'atoms/pokemon';
 import Container from 'components/common/Container';
 import Button from 'components/common/Button';
-import { IMAGE_URL, PAGINATION } from 'constants/pokePedia';
+import { IMAGE_URL, PAGINATION, POKE_NAME } from 'constants/pokePedia';
 
 export const PokePedia = () => {
     const [pagination, setPagination] = useState<number>(1);
@@ -37,6 +37,9 @@ export const PokePedia = () => {
                                 alt="사진을 불러올수 없습니다."
                                 src={`${IMAGE_URL}/${prev + idx + 1}.png`}
                             />
+                            <div className="text-center">
+                                {POKE_NAME[prev + idx + 1]}
+                            </div>
                         </PokeCard>
                     ))}
                     <Pagination>
