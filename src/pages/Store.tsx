@@ -1,27 +1,18 @@
 /* eslint-disable global-require */
-import React, { useCallback, useMemo } from 'react';
-import { useRecoilState } from 'recoil';
-import { Container } from 'components/common/Container';
-import { Button } from 'components/common/Button';
-import { money } from 'atoms/money';
+import React, { useCallback, useContext, useMemo } from 'react';
+import Container from 'components/common/Container';
+import Button from 'components/common/Button';
+import { MoneyContext } from 'components/context/MoneyProvider';
 
-export const Store = () => {
-    const [coins, setCoins] = useRecoilState<number>(money);
+const Store = () => {
+    const test = useContext(MoneyContext);
+    console.log('````````````test````````````', test);
+    const { money, getMoney, spendMoney } = useContext(MoneyContext);
 
     const breads = useMemo(
         () => ['digda', 'fire', 'ghost', 'pika', 'purin', 'rocket', 'tutle'],
         []
     );
-
-    const buyHandler = useCallback(() => {
-        console.log('buy');
-        if (coins < 1200) {
-            console.log('구매불가');
-            return;
-        }
-
-        setCoins((prev) => prev - 1200);
-    }, []);
 
     return (
         <Container className="flex justify-center bg-opacity-30" id="store">
@@ -40,13 +31,13 @@ export const Store = () => {
                             <Button
                                 className="text-center p-2"
                                 btnClassName={`p-2 rounded-2xl ${
-                                    coins < 1200
+                                    money < 1200
                                         ? 'bg-red-500/70'
                                         : 'bg-stone-500/70'
                                 }`}
-                                onClick={buyHandler}
+                                onClick={spendMoney}
                             >
-                                {coins < 1200 ? '구매불가' : '1,200'}
+                                {money < 1200 ? '구매불가' : '1,200'}
                             </Button>
                         </div>
                     ))}
@@ -54,3 +45,5 @@ export const Store = () => {
         </Container>
     );
 };
+
+export default React.memo(Store);

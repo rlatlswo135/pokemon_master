@@ -7,7 +7,7 @@ type ContainerType = {
     color?: string;
 };
 
-export const Container = ({
+const Container = ({
     className,
     children,
     id = '',
@@ -22,3 +22,5 @@ export const Container = ({
         </div>
     );
 };
+
+export default React.memo(Container);

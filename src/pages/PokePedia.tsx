@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'components/common/Container';
+import Container from 'components/common/Container';
 import { useRecoilState } from 'recoil';
 import { pokeList } from 'atoms/pokemon';
 

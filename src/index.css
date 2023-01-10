@@ -48,19 +48,8 @@ code {
     background-size: cover;
 }
 
-/* #store::before {
-    content: '';
-    opacity: 0.2;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    background-color: #004;
-} */
-
 #store {
-    background-image: url('./assets/background/convin.jpg');
+    background-image: url('./assets/background/getCoins.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

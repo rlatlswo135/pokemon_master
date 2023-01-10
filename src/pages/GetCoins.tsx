@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Button } from 'components/common/Button';
+import Button from 'components/common/Button';
 import { useRecoilState } from 'recoil';
 import { money } from 'atoms/money';
 
