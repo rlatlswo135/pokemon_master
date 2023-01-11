@@ -30,6 +30,9 @@ const Button = ({
 
 export default React.memo(Button);
 
-const ButtonDiv = tw.div`
+type DivProps = {
+    className: string;
+};
+const ButtonDiv = tw.div<DivProps>`
 min-w-min min-h-min hover:cursor-pointer ${({ className }) => `${className}`}
 `;
