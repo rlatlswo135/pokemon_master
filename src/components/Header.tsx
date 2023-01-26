@@ -54,7 +54,7 @@ const Container = tw.header`
 flex w-full justify-evenly absolute p-5 text-xl z-50 items-center 
 `;
 const Coin = tw.button`
-border-4 p-2 border-goldLine bg-gold rounded-2xl
+border-4 p-2 border-goldLine bg-gold rounded-2xl flex-[0.5]
 `;
 const MyBag = tw.button`
 border-4 border-red-300 p-2 bg-red-200 rounded-2xl

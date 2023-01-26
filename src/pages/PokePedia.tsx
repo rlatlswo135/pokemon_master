@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import * as _ from 'lodash';
 import tw from 'tailwind-styled-components';
 import { pokeListState, myPokeListState } from '@/atoms';
 import { Container } from '@/components/common';
@@ -25,13 +26,17 @@ export const PokePedia = () => {
         []
     );
 
+    const percent = getPercent(
+        Object.values(myPoke).filter((a) => a > 0).length,
+        _.size(POKE_NAME)
+    );
     const prev = useMemo(() => PAGINATION * (pagination - 1), [pagination]);
     const next = useMemo(() => PAGINATION * pagination, [pagination]);
 
     return (
         <Container addstyle="px-5" image="bg-defaultImage">
             <SubContainer>
-                <div className="flex justify-center">달성률</div>
+                <div className="absolute left-[50%] flex justify-center font-bold text-2xl">{`${percent}%`}</div>
                 <GridContainer>
                     {pokemonList.slice(prev, next).map((item: any, idx) => (
                         <PokeCard key={`poke_${item.name}`}>

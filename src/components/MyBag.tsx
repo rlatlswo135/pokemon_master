@@ -1,5 +1,11 @@
 /* eslint-disable global-require */
-import React, { useState, useMemo, useCallback, Suspense } from 'react';
+import React, {
+    useState,
+    useEffect,
+    useRef,
+    useCallback,
+    Suspense,
+} from 'react';
 import tw from 'tailwind-styled-components';
 import * as _ from 'lodash';
 import { useRecoilState } from 'recoil';
@@ -11,6 +17,7 @@ import { bagState, myPokeListState } from '@/atoms';
 import { BagValueKey } from '@/atoms/bag';
 
 export const MyBag = () => {
+    const containerRef = useRef<HTMLDivElement | null>(null);
     const [bag, setBag] = useRecoilState(bagState);
     const [myPoke, setMyPoke] = useRecoilState(myPokeListState);
 
@@ -43,7 +50,13 @@ export const MyBag = () => {
     }, []);
 
     return (
-        <>
+        <div
+            ref={(e) => {
+                if (e) {
+                    containerRef.current = e;
+                }
+            }}
+        >
             <Div $isOpen={isOpen}>
                 {/* <Breads button={breadBtnProps} grayscale /> */}
                 {BREADS.map((bread) => {
@@ -90,7 +103,7 @@ export const MyBag = () => {
                     </Suspense>
                 </Modal>
             )}
-        </>
+        </div>
     );
 };
 
