@@ -1,31 +1,40 @@
-import React, { useMemo, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useMemo, useCallback } from 'react';
 import tw from 'tailwind-styled-components';
-import { MyBagContext, useMyBagContext } from 'context/MyBagProvider';
-import { MoneyContext, useMoneyContext } from 'context/MoneyProvider';
-import Button from './common/Button';
+import { Link, useLocation } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { coinState } from '@/atoms/coin';
+import { bagState } from '@/atoms/bag';
+import { LUCKY, SUPER_LUCKY } from '@/constants/money';
 
 export const Header = () => {
-    // let money, getMoney;
-    const { money, getMoney, spendMoney } = useMoneyContext() as MoneyContext;
-    const { isBagOpen, toggleBagOpen } = useMyBagContext() as MyBagContext;
+    const [coins, setCoins] = useRecoilState(coinState);
+    const [bag, setBag] = useRecoilState(bagState);
 
     const { pathname: pathName } = useLocation();
 
     const routeItems = useMemo(() => ['myPage', 'pokepedia', 'store'], []);
 
+    const toggleBagOpen = useCallback(() => {
+        setBag((prev) => ({ ...prev, isOpen: !prev.isOpen }));
+    }, []);
+
+    const getCoins = useCallback(
+        () =>
+            setCoins((prev) => {
+                const per: number = Math.random();
+                if (per < SUPER_LUCKY) return prev + 10000;
+                if (per < LUCKY) return prev + 1000;
+                return prev + 100;
+            }),
+        []
+    );
+
     if (pathName === '/') return <header />;
 
     return (
-        <header className="flex w-full justify-evenly absolute p-5 text-xl z-50">
-            {money}
-            <Button
-                className="border-4 border-yellow-500 bg-yellow-300 rounded-2xl"
-                btnClassName="hover:underline"
-                onClick={getMoney}
-            >
-                GET!
-            </Button>
+        <Container>
+            {coins}
+            <Button onClick={getCoins}>GET!</Button>
             {routeItems.map((url) => (
                 <Link
                     key={`header-url-${url}`}
@@ -37,7 +46,16 @@ export const Header = () => {
                     {url}
                 </Link>
             ))}
-            <Button onClick={toggleBagOpen}>MyBag</Button>
-        </header>
+            <button type="button" onClick={toggleBagOpen}>
+                MyBag
+            </button>
+        </Container>
     );
 };
+
+const Container = tw.header`
+flex w-full justify-evenly absolute p-5 text-xl z-50    
+`;
+const Button = tw.button`
+border-4 border-goldLine bg-gold rounded-2xl
+`;

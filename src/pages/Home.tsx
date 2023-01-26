@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import tw from 'tailwind-styled-components';
-import { getOneGenerationPokemon } from 'api/api';
-import { pokeList } from 'atoms/pokemon';
+import { getOneGenerationPokemon } from '@/api/api';
+import { pokeList } from '@/atoms/pokemon';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import Button from '../components/common/Button';
+import { Button } from '@/components/common/Button';
 
 export const Home = () => {
     const [pokemonList, setPokemonList] = useRecoilState(pokeList);

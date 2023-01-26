@@ -4,6 +4,14 @@ module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
     theme: {
         extend: {
+            colors: {
+                gold: 'rgb(253 224 71)',
+                goldLine: 'rgb(234 179 8)',
+                sub: 'rgb(241 245 249 / 0.2);',
+            },
+            borderWidth: {
+                1: '1px',
+            },
             backgroundImage: {
                 defaultImage: "url('/src/assets/background/default.jpg')",
                 homeImage: "url('/src/assets/background/home.gif')",

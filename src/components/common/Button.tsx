@@ -9,30 +9,25 @@ export type ButtonProps = {
     btnClassName?: string;
 };
 
-const Button = ({
-    className = '',
-    btnClassName = '',
-    onClick = () => console.log('default'),
-    children,
-}: ButtonProps) => {
-    return (
-        <ButtonDiv className={className}>
+export const Button = React.memo(
+    ({
+        className = '',
+        btnClassName = '',
+        onClick = () => console.log('default'),
+        children,
+    }: ButtonProps) => {
+        return (
             <button
-                className={`min-w-full min-h-full active:translate-y-2 ${btnClassName}`}
+                className={`active:translate-y-2 border-4 border-goldLine bg-gold rounded-2xl ${className}`}
                 type="button"
                 onClick={onClick}
             >
                 {children}
             </button>
-        </ButtonDiv>
-    );
-};
-
-export default React.memo(Button);
+        );
+    }
+);
 
 type DivProps = {
     className: string;
 };
-const ButtonDiv = tw.div<DivProps>`
-min-w-min min-h-min hover:cursor-pointer ${({ className }) => `${className}`}
-`;

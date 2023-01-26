@@ -1,17 +1,14 @@
 /* eslint-disable global-require */
 import React, { useMemo } from 'react';
-import { BREADS } from 'constants/bread';
+import { BREADS } from '@/constants/bread';
 import tw from 'tailwind-styled-components';
-import Button, { ButtonProps } from './common/Button';
 
 export type BreadsProps = {
-    button?: ButtonProps;
     width?: string;
     height?: string;
     grayscale?: boolean;
 };
 export const Breads = ({
-    button,
     grayscale = false,
     width = 'w-40',
     height = 'h-40',
@@ -28,7 +25,7 @@ export const Breads = ({
                         alt="사진을 불러올수 없습니다"
                         $grayscale={grayscale}
                     />
-                    {button && (
+                    {/* {button && (
                         <Button
                             className={button.className}
                             btnClassName={button.btnClassName}
@@ -36,7 +33,7 @@ export const Breads = ({
                         >
                             {button.children}
                         </Button>
-                    )}
+                    )} */}
                 </div>
             ))}
         </>

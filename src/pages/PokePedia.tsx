@@ -1,10 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import tw from 'tailwind-styled-components';
-import { pokeList } from 'atoms/pokemon';
-import Container from 'components/common/Container';
-import Button from 'components/common/Button';
-import { IMAGE_URL, PAGINATION, POKE_NAME } from 'constants/pokePedia';
+import { pokeList } from '@/atoms/pokemon';
+import { Button, Container } from '@/components/common';
+import { IMAGE_URL, PAGINATION, POKE_NAME } from '@/constants/pokePedia';
 
 export const PokePedia = () => {
     const [pagination, setPagination] = useState<number>(1);
@@ -37,7 +36,7 @@ export const PokePedia = () => {
                                 alt="사진을 불러올수 없습니다."
                                 src={`${IMAGE_URL}/${prev + idx + 1}.png`}
                             />
-                            <div className="text-center">
+                            <div className="text-center font-bold text-xl">
                                 {POKE_NAME[prev + idx + 1]}
                             </div>
                         </PokeCard>
@@ -64,6 +63,7 @@ const PokeCard = tw.div`
 h-44 w-44
 `;
 
+// 추후 획득여부에따라 칼라
 const PokeImage = tw.img`
 w-full h-full grayscale
 `;
@@ -71,3 +71,15 @@ w-full h-full grayscale
 const Pagination = tw.div`
 w-full flex border-4 justify-evenly   
 `;
+
+/*
+firebase -> 가입 이후 firestore에 Uid 넣고
+
+money , bag , pokePedia 데이터 넣어주고
+
+uid:{
+    money:number,
+    bag:빵[]
+    pokepedia:포켓몬id[]
+}
+*/

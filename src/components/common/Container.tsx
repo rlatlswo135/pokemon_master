@@ -9,21 +9,21 @@ type ContainerProps = {
     image?: string;
 };
 
-const Container = ({
-    children,
-    addstyle = '',
-    image = '',
-    id = '',
-    color = '',
-}: ContainerProps) => {
-    return (
-        <Div id={id} color={color} addstyle={addstyle} image={image}>
-            {children}
-        </Div>
-    );
-};
-
-export default React.memo(Container);
+export const Container = React.memo(
+    ({
+        children,
+        addstyle = '',
+        image = '',
+        id = '',
+        color = '',
+    }: ContainerProps) => {
+        return (
+            <Div id={id} color={color} addstyle={addstyle} image={image}>
+                {children}
+            </Div>
+        );
+    }
+);
 
 type DivProps = {
     addstyle: string;
@@ -31,7 +31,7 @@ type DivProps = {
     image: string;
 };
 const Div = tw.div<DivProps>`
-container w-screen h-screen max-h-full max-w-full p-24 font-pokeFont overflow-hidden
+container w-screen h-screen max-h-full max-w-full p-24 overflow-hidden
 ${({ addstyle, color }) => `${addstyle} ${color}`}
 ${({ image }) => {
     if (image.length) return `${image} bg-no-repeat bg-cover bg-center`;
