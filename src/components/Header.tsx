@@ -33,8 +33,8 @@ export const Header = () => {
 
     return (
         <Container>
-            {coins}
-            <Button onClick={getCoins}>GET!</Button>
+            <Coin onClick={getCoins}>{coins}</Coin>
+            <MyBag onClick={toggleBagOpen}>MyBag</MyBag>
             {routeItems.map((url) => (
                 <Link
                     key={`header-url-${url}`}
@@ -46,16 +46,16 @@ export const Header = () => {
                     {url}
                 </Link>
             ))}
-            <button type="button" onClick={toggleBagOpen}>
-                MyBag
-            </button>
         </Container>
     );
 };
 
 const Container = tw.header`
-flex w-full justify-evenly absolute p-5 text-xl z-50    
+flex w-full justify-evenly absolute p-5 text-xl z-50 items-center 
 `;
-const Button = tw.button`
-border-4 border-goldLine bg-gold rounded-2xl
+const Coin = tw.button`
+border-4 p-2 border-goldLine bg-gold rounded-2xl
+`;
+const MyBag = tw.button`
+border-4 border-red-300 p-2 bg-red-200 rounded-2xl
 `;

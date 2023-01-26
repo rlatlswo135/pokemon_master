@@ -53,7 +53,7 @@ ${({ width, height }) => `${width} ${height}`}
 absolute top-0 z-50 py-40
 `;
 const ContentWrap = tw.div`
-relative bg-slate-500/90 flex flex-col items-center justify-evenly w-full h-full
+max-w-full max-h-full relative bg-slate-500/90 flex flex-col items-center justify-evenly w-full h-full
 `;
 const Close = tw.button`
 absolute top-2 right-2 z-50 text-3xl text-red-500

@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import tw from 'tailwind-styled-components';
-import { getOneGenerationPokemon } from '@/api/api';
-import { pokeList } from '@/atoms/pokemon';
-import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import { Link } from 'react-router-dom';
+import { getOneGenerationPokemon } from '@/api/api';
+import { pokeListState } from '@/atoms/pokeList';
 import { Button } from '@/components/common/Button';
+import { IMAGE_URL } from '@/constants/pokePedia';
 
 export const Home = () => {
-    const [pokemonList, setPokemonList] = useRecoilState(pokeList);
+    const [pokemonList, setPokemonList] = useRecoilState(pokeListState);
 
     useEffect(() => {
-        getOneGenerationPokemon().then((item) =>
-            setPokemonList(item.pokemon_species)
-        );
+        getOneGenerationPokemon().then((item) => {
+            setPokemonList(item.pokemon_species);
+        });
     }, []);
 
     return (

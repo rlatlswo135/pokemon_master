@@ -1,37 +1,61 @@
 /* eslint-disable global-require */
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import tw from 'tailwind-styled-components';
+import * as _ from 'lodash';
 import { useRecoilState } from 'recoil';
 import { bagState } from '@/atoms/bag';
-import { Container, Button, Modal, Img } from '@/components/common';
+import { Container, Modal, Img } from '@/components/common';
 import { BREADS, BREAD_IMAGES, LOADING_IMAGES } from '@/constants';
+import { coinState } from '@/atoms/coin';
+import { priceFormat } from '@/util';
 
 export const Store = React.memo(() => {
+    const [coin, setCoin] = useRecoilState(coinState);
     const [bag, setBag] = useRecoilState(bagState);
     // 1개 1200 10개 10000원
     const [breadIdx, setBreadIdx] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
     const [result, setResult] = useState<string[]>([]);
 
-    const getBread = useCallback((counter: number) => {
-        setLoading(true);
-        setResult([]);
-        const gatcha: string[] = [];
-        for (let i = 0; i < counter; i += 1) {
-            const bread = BREADS[Math.floor(Math.random() * BREADS.length)];
-            gatcha.push(bread);
-            setBag((prev) => {
-                const copy = { ...prev.value };
-                copy[bread] += 1;
-                return { ...prev, value: copy };
-            });
-        }
-        setTimeout(() => {
-            setLoading(false);
-            setResult(gatcha);
-        }, 1000);
+    const buyBreadInfo = useMemo(
+        () => [
+            { quan: 1, price: 120 },
+            { quan: 10, price: 10000 },
+        ],
+        []
+    );
+
+    const spendCoin = useCallback((price: number) => {
+        setCoin((prev) => {
+            if (prev < price) return prev;
+            return prev - price;
+        });
     }, []);
+
+    const getBread = useCallback(
+        (quan: number, price: number) => {
+            if (coin < price) return;
+            setLoading(true);
+            setResult([]);
+            const gatcha: string[] = [];
+            for (let i = 0; i < quan; i += 1) {
+                const bread = BREADS[Math.floor(Math.random() * BREADS.length)];
+                gatcha.push(bread);
+                setBag((prev) => {
+                    const copy = { ...prev.value };
+                    copy[bread] += 1;
+                    return { ...prev, value: copy };
+                });
+            }
+            spendCoin(price);
+            setTimeout(() => {
+                setLoading(false);
+                setResult(gatcha);
+            }, 1000);
+        },
+        [coin]
+    );
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -72,13 +96,15 @@ export const Store = React.memo(() => {
                             />
                         )}
                     </ImageWrap>
-                    <div className="flex mt-5">
-                        <Button className="p-4" onClick={() => getBread(1)}>
-                            GET!
-                        </Button>
-                        <Button className="p-4" onClick={() => getBread(10)}>
-                            GET * 10!
-                        </Button>
+                    <div className="flex mt-5 w-[50%] justify-evenly">
+                        {buyBreadInfo.map(({ quan, price }) => {
+                            return (
+                                <Button
+                                    onClick={() => getBread(quan, price)}
+                                    $deny={coin < price}
+                                >{`x${quan} (${priceFormat(price)}￦)`}</Button>
+                            );
+                        })}
                     </div>
                 </SubContainer>
             </Container>
@@ -101,12 +127,14 @@ export const Store = React.memo(() => {
                         ))}
                     </div>
                     <div className="flex w-[50%] justify-evenly">
-                        <Button className="p-4" onClick={() => getBread(1)}>
-                            GET!
-                        </Button>
-                        <Button className="p-4" onClick={() => getBread(10)}>
-                            GET * 10!
-                        </Button>
+                        {buyBreadInfo.map(({ quan, price }) => {
+                            return (
+                                <Button
+                                    onClick={() => getBread(quan, price)}
+                                    $deny={coin < price}
+                                >{`x${quan} (${priceFormat(price)}￦)`}</Button>
+                            );
+                        })}
                     </div>
                 </Modal>
             )}
@@ -121,6 +149,10 @@ const ImageWrap = tw.div`
 rounded-xl border-8 w-[40%] h-[30%] flex items-center border-black/30 bg-slate-500/80 justify-center
 `;
 
+const Button = tw.button<{ $deny?: boolean }>`
+${({ $deny }) => ($deny ? 'bg-deny' : 'bg-gold')}
+p-4 rounded-2xl
+`;
 const LoadingWrap = tw.div`
 relative w-full h-full
 `;

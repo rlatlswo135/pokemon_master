@@ -8,6 +8,7 @@ module.exports = {
                 gold: 'rgb(253 224 71)',
                 goldLine: 'rgb(234 179 8)',
                 sub: 'rgb(241 245 249 / 0.2);',
+                deny: 'rgb(148 163 184 / 0.8)',
             },
             borderWidth: {
                 1: '1px',

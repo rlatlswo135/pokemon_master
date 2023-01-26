@@ -6,7 +6,8 @@ type Bag = {
     value: BagValue;
 };
 
-type BagValue = Record<typeof BREADS[number], number>;
+export type BagValueKey = typeof BREADS[number];
+type BagValue = Record<BagValueKey, number>;
 
 export const bagState = atom<Bag>({
     key: '_mag',

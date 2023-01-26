@@ -28,3 +28,12 @@ export const BREADS = [
     'rocket',
     'tutle',
 ] as const;
+
+type BuyBread = {
+    price: number;
+    quan: number;
+};
+export const BUY_BREAD: BuyBread[] = [
+    { quan: 1, price: 120 },
+    { quan: 10, price: 10000 },
+];

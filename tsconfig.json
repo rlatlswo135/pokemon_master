@@ -9,7 +9,8 @@
             "@hooks": ["src/hooks/*"],
             "@pages": ["src/pages/*"],
             "@assets": ["src/assets/*"],
-            "@api": ["src/api/*"]
+            "@api": ["src/api/*"],
+            "@util": ["src/util/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
