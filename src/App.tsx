@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { Header, MyBag } from '@/components';
 import { Home, PokePedia, Store, MyPage } from '@/pages';
+import { pokeListState } from '@/atoms';
+import { getOneGenerationPokemon } from '@/api/api';
 
 export const App = () => {
+    const [pokemonList, setPokemonList] = useRecoilState(pokeListState);
+
+    useEffect(() => {
+        getOneGenerationPokemon().then((item) => {
+            setPokemonList(item.pokemon_species);
+        });
+    }, []);
+
     return (
         <>
             <Header />

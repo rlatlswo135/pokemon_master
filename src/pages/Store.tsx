@@ -100,6 +100,7 @@ export const Store = React.memo(() => {
                         {buyBreadInfo.map(({ quan, price }) => {
                             return (
                                 <Button
+                                    key={`store-btn-${price}`}
                                     onClick={() => getBread(quan, price)}
                                     $deny={coin < price}
                                 >{`x${quan} (${priceFormat(price)}￦)`}</Button>
@@ -130,6 +131,7 @@ export const Store = React.memo(() => {
                         {buyBreadInfo.map(({ quan, price }) => {
                             return (
                                 <Button
+                                    key={`store-modal-btn-${price}`}
                                     onClick={() => getBread(quan, price)}
                                     $deny={coin < price}
                                 >{`x${quan} (${priceFormat(price)}￦)`}</Button>
