@@ -1,20 +1,23 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { coinState, bagState, pokeListState, userState } from '@/atoms';
+import { coinState, bagState, userState, myPokeListState } from '@/atoms';
 import { LUCKY, SUPER_LUCKY } from '@/constants';
 import { updateDocument } from '@/firebase/store';
 
 export const Header = () => {
+    const { pathname: pathName } = useLocation();
+
     const currentUser = useRecoilValue(userState);
     const [coin, setCoin] = useRecoilState(coinState);
     const [bag, setBag] = useRecoilState(bagState);
-    const [pokeList, setPokeList] = useRecoilState(pokeListState);
+    const [pokeList, setPokeList] = useRecoilState(myPokeListState);
 
-    const { pathname: pathName } = useLocation();
+    const [loading, setLoading] = useState<Boolean>(false);
 
     const routeItems = useMemo(() => ['myPage', 'pokepedia', 'store'], []);
+    const isGuest = useMemo(() => currentUser.uid === 'GUEST', [currentUser]);
 
     const toggleBagOpen = useCallback(() => {
         setBag((prev) => ({ ...prev, isOpen: !prev.isOpen }));
@@ -32,12 +35,14 @@ export const Header = () => {
     );
 
     const saveHandler = async () => {
-        if (currentUser) {
+        if (currentUser && !isGuest) {
+            setLoading(true);
             const result = await updateDocument('data', currentUser.uid, {
                 coin,
                 bag,
                 pokeList,
             });
+            setLoading(false);
         }
     };
 
@@ -45,7 +50,12 @@ export const Header = () => {
 
     return (
         <Container>
-            <SaveBtn onClick={saveHandler}>save</SaveBtn>
+            {!isGuest &&
+                (loading ? (
+                    <LoadingPing />
+                ) : (
+                    <SaveBtn onClick={saveHandler}>save</SaveBtn>
+                ))}
             <Coin onClick={getCoins}>{`${coin}₩`}</Coin>
             <MyBag onClick={toggleBagOpen}>MyBag</MyBag>
             {routeItems.map((url) => (
@@ -53,7 +63,7 @@ export const Header = () => {
                     key={`header-url-${url}`}
                     className={`${
                         pathName === `/${url}` ? 'text-red-600' : ''
-                    } hover:text-red-600`}
+                    } hover:text-red-600 `}
                     to={`/${url}`}
                 >
                     {url}
@@ -64,7 +74,7 @@ export const Header = () => {
 };
 
 const Container = tw.header`
-flex w-full justify-evenly absolute p-5 text-xl z-50 items-center 
+flex w-full justify-evenly absolute p-5 text-xl z-49 items-center bg-gray-500/40
 `;
 const SaveBtn = tw.button`
 border-2 border-red-400 p-2 rounded-2xl bg-red-500 hover:text-red-600
@@ -74,4 +84,7 @@ border-2 p-2 border-goldLine bg-gold rounded-2xl flex-[0.5] hover:text-red-600
 `;
 const MyBag = tw.button`
 border-2 border-red-300 p-2 bg-red-200 rounded-2xl hover:text-red-600
+`;
+const LoadingPing = tw.div`
+animate-ping p-4 rounded-full border-8
 `;

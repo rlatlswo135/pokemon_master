@@ -87,15 +87,14 @@ export const MyBag = () => {
                             }`}
                         >
                             {result.map((item) => (
-                                <div className="relative flex flex-col flex-[0.3] items-center">
+                                <ModalResultWrap>
                                     <Img src={`${IMAGE_URL}/${item}.png`} />
-                                    <span className="relative top-[-30px] font-bold text-2xl">
+                                    <ModalPokeName>
                                         {POKE_NAME[item]}
-                                    </span>
-                                </div>
+                                    </ModalPokeName>
+                                </ModalResultWrap>
                             ))}
                         </div>
-                        <div>asd</div>
                     </Suspense>
                 </Modal>
             )}
@@ -123,4 +122,11 @@ w-full h-full z-50 ${(props) => (props.$grayscale ? 'grayscale' : '')}
 
 const Quan = tw.span`
 absolute top-0 right-0 z-50
+`;
+
+const ModalResultWrap = tw.div`
+relative flex flex-col flex-[0.3] items-center
+`;
+const ModalPokeName = tw.span`
+relative top-[-30px] font-bold text-2xl
 `;

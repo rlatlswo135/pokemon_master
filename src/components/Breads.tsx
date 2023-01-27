@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 import React, { useMemo } from 'react';
-import { BREADS } from '@/constants/bread';
 import tw from 'tailwind-styled-components';
+import { BREADS } from '@/constants/bread';
 
 export type BreadsProps = {
     width?: string;

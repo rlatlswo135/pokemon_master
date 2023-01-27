@@ -8,7 +8,6 @@ import { userState } from '@/atoms';
 
 export const PrivateRoute = () => {
     const currentUser = useRecoilValue(userState);
-    console.log('private', currentUser);
     return currentUser.uid.length ? (
         <>
             <Header />

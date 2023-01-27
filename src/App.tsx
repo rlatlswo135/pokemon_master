@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { Header, MyBag } from '@/components';
-import { Home, PokePedia, Store, MyPage } from '@/pages';
+import { Home, PokePedia, Store, MyPage, HowPlay } from '@/pages';
 import { pokeListState } from '@/atoms';
 import { getOneGenerationPokemon } from '@/api/api';
 import { PrivateRoute } from './components/PrivateRoute';
@@ -23,6 +23,7 @@ export const App = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/how" element={<HowPlay />} />
             {/* <Route path="/" element={<PrivateRoute />}> */}
             {/* </Route> */}
             <Route path="/pokepedia" element={<PrivateRoute />}>

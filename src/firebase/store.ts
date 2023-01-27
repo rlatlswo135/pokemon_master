@@ -8,6 +8,7 @@ import {
     setDoc,
     getDocs,
     getDoc,
+    deleteDoc,
 } from 'firebase/firestore';
 import { app } from '@/firebase';
 
@@ -66,6 +67,17 @@ export const updateDocument = async (
     try {
         const ref = doc(fbStore, colName, docId);
         const result = await updateDoc(ref, data);
+        return result;
+    } catch (err: any) {
+        console.error(err);
+        throw new Error(err.code);
+    }
+};
+
+export const deleteDocument = async (colName: Collection, docId: string) => {
+    try {
+        const ref = doc(fbStore, colName, docId);
+        const result = await deleteDoc(ref);
         return result;
     } catch (err: any) {
         console.error(err);

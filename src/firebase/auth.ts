@@ -3,6 +3,8 @@ import {
     GoogleAuthProvider,
     getAuth,
     UserCredential,
+    deleteUser,
+    signOut,
 } from 'firebase/auth';
 import * as _ from 'lodash';
 import { app } from '@/firebase';
@@ -21,6 +23,28 @@ export const googleLogin = async (): Promise<UserCredential> => {
     } catch (err: any) {
         const credential = GoogleAuthProvider.credentialFromError(err);
         throw new Error(err.code);
+    }
+};
+
+export const signOutAuth = async () => {
+    try {
+        const currentUser = getUsers();
+        if (currentUser) {
+            const result = await signOut(fbAuth);
+        }
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+export const deleteAuth = async () => {
+    try {
+        const currentUser = getUsers();
+        if (currentUser) {
+            const result = deleteUser(currentUser);
+        }
+    } catch (err) {
+        console.error(err);
     }
 };
 

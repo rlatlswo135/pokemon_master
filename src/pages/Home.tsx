@@ -47,17 +47,20 @@ export const Home = () => {
         navigate('/store');
     };
 
-    const openHowToPlay = () => {};
+    const openHowToPlay = useCallback(() => {
+        navigate('/how');
+    }, []);
 
-    const clickGuestHandler = () => {
+    const clickGuestHandler = useCallback(() => {
         setOpen(true);
-    };
+    }, []);
+
     const closeModal = useCallback(() => setOpen(false), []);
 
-    const loginGuest = () => {
+    const loginGuest = useCallback(() => {
         userSetter((prev) => ({ ...prev, uid: 'GUEST' }));
         navigate('/store');
-    };
+    }, []);
 
     return (
         <>
@@ -72,30 +75,18 @@ export const Home = () => {
             </HomeDiv>
             {open && (
                 <Modal closeHandler={closeModal}>
-                    <div className="flex flex-col items-center">
-                        <p className="text-4xl font-bold">
-                            게스트로 로그인시 진행상황은 저장되지 않습니다
+                    <ModalTextWrap>
+                        <p className="text-4xl font-bold text-red-300">
+                            게스트로 로그인시 저장버튼은 활성화 되지 않습니다
                         </p>
                         <p className="text-4xl font-bold mt-10">
                             계속 진행하시려면 Go! 버튼을 눌러주세요.
                         </p>
-                        <div className="flex mt-24 justify-between w-full">
-                            <button
-                                type="button"
-                                onClick={loginGuest}
-                                className="p-4 bg-gold rounded-xl w-[40%] border-goldLine border-4 hover:bg-neutral-600"
-                            >
-                                GO!
-                            </button>
-                            <button
-                                type="button"
-                                onClick={closeModal}
-                                className="p-4 bg-gold rounded-xl w-[40%] border-goldLine border-4 hover:bg-neutral-600"
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
+                        <ModalBtnWrap>
+                            <ModalBtn onClick={loginGuest}>GO!</ModalBtn>
+                            <ModalBtn onClick={closeModal}>Cancel</ModalBtn>
+                        </ModalBtnWrap>
+                    </ModalTextWrap>
                 </Modal>
             )}
         </>
@@ -106,14 +97,21 @@ const HomeDiv = tw.div`
 container w-screen h-screen min-w-full min-h-full text-lg
 bg-homeImage bg-no-repeat bg-center
 `;
-
 const ButtonsDiv = tw.div`
 absolute w-[30%] top-3/4 left-1/2 translate-x-[-50%] flex flex-col items-center justify-center
 `;
-
 const MenuBtn = tw.button`
 w-full h-16 bg-gold hover:bg-orange-300 rounded-2xl mt-4
 `;
 const LoginGoogle = tw.div`
 w-full h-16 hover:cursor-pointer hover:bg-orange-300 mt-4
+`;
+const ModalTextWrap = tw.div`
+flex flex-col items-center
+`;
+const ModalBtnWrap = tw.div`
+flex mt-24 justify-between w-full
+`;
+const ModalBtn = tw.button`
+p-4 bg-gold rounded-xl w-[40%] border-goldLine border-4 hover:bg-neutral-600
 `;

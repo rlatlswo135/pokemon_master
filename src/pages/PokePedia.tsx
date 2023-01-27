@@ -36,7 +36,7 @@ export const PokePedia = () => {
     return (
         <Container addstyle="px-5 flex justify-center" image="bg-defaultImage">
             <SubContainer>
-                <div className="absolute left-[50%] flex justify-center font-bold text-2xl">{`${percent}%`}</div>
+                <Percent>{`${percent}%`}</Percent>
                 <GridContainer>
                     {pokemonList.slice(prev, next).map((item: any, idx) => {
                         const pokemonId = idx + 1;
@@ -54,26 +54,14 @@ export const PokePedia = () => {
                                     src={`${IMAGE_URL}/${prev + pokemonId}.png`}
                                     $exist={isExist}
                                 />
-                                <div className="text-center font-bold text-xl">
+                                <PokeName>
                                     {POKE_NAME[prev + pokemonId]}
-                                </div>
+                                </PokeName>
                             </PokeCard>
                         );
                     })}
-                    <button
-                        className="absolute left-3 top-1/2 text-4xl font-bold"
-                        type="button"
-                        onClick={prevPageHandler}
-                    >
-                        &lt;
-                    </button>
-                    <button
-                        className="absolute right-3 top-1/2 text-4xl font-bold"
-                        type="button"
-                        onClick={nextPageHandler}
-                    >
-                        &gt;
-                    </button>
+                    <LeftBtn onClick={prevPageHandler}>&lt;</LeftBtn>
+                    <RightBtn onClick={nextPageHandler}>&gt;</RightBtn>
                 </GridContainer>
             </SubContainer>
         </Container>
@@ -97,15 +85,16 @@ const PokeImage = tw.img<{ $exist: boolean }>`
 ${({ $exist }) => ($exist ? '' : 'grayscale')}
 w-full h-full
 `;
+const PokeName = tw.div`
+text-center font-bold text-xl
+`;
 
-/*
-firebase -> 가입 이후 firestore에 Uid 넣고
-
-money , bag , pokePedia 데이터 넣어주고
-
-uid:{
-    money:number,
-    bag:빵[]
-    pokepedia:포켓몬id[]
-}
-*/
+const Percent = tw.div`
+absolute left-[50%] flex justify-center font-bold text-2xl
+`;
+const LeftBtn = tw.button`
+absolute left-3 top-1/2 text-4xl font-bold
+`;
+const RightBtn = tw.button`
+absolute right-3 top-1/2 text-4xl font-bold
+`;

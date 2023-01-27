@@ -97,7 +97,7 @@ export const Store = React.memo(() => {
                             />
                         )}
                     </ImageWrap>
-                    <div className="flex mt-5 w-[50%] justify-evenly">
+                    <BuyBreadWrap>
                         {buyBreadInfo.map(({ quan, price }) => {
                             return (
                                 <Button
@@ -107,7 +107,7 @@ export const Store = React.memo(() => {
                                 >{`x${quan} (${priceFormat(price)}￦)`}</Button>
                             );
                         })}
-                    </div>
+                    </BuyBreadWrap>
                 </SubContainer>
             </Container>
             {!!result.length && (
@@ -128,7 +128,7 @@ export const Store = React.memo(() => {
                             />
                         ))}
                     </div>
-                    <div className="flex w-[50%] justify-evenly">
+                    <ModalBtnWrap>
                         {buyBreadInfo.map(({ quan, price }) => {
                             return (
                                 <Button
@@ -138,7 +138,7 @@ export const Store = React.memo(() => {
                                 >{`x${quan} (${priceFormat(price)}￦)`}</Button>
                             );
                         })}
-                    </div>
+                    </ModalBtnWrap>
                 </Modal>
             )}
         </>
@@ -156,9 +156,15 @@ const Button = tw.button<{ $deny?: boolean }>`
 ${({ $deny }) => ($deny ? 'bg-deny' : 'bg-gold')}
 p-4 rounded-2xl
 `;
+const BuyBreadWrap = tw.div`
+flex mt-5 w-[50%] justify-evenly
+`;
 const LoadingWrap = tw.div`
 relative w-full h-full
 `;
 const LoadingSpan = tw.span`
 font-bold text-2xl absolute top-[80%] left-1/2 translate-x-[-50%] animate-spin
+`;
+const ModalBtnWrap = tw.div`
+flex w-[50%] justify-evenly
 `;
