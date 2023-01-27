@@ -37,13 +37,15 @@ export const MyBag = () => {
         });
         const sticker = [];
         for (let i = 0; i < quan; i += 1) {
-            const pokemonId = makePokeId(_.size(POKE_NAME));
-            sticker.push(pokemonId);
-            setMyPoke((prev) => {
-                const copy = { ...prev };
-                copy[pokemonId] += 1;
-                return copy;
-            });
+            const pokeId = makePokeId(_.size(POKE_NAME));
+            sticker.push(pokeId);
+            if (!myPoke[pokeId]) {
+                setMyPoke((prev) => {
+                    const copy = { ...prev };
+                    copy[pokeId] = 1;
+                    return copy;
+                });
+            }
         }
 
         setResult(sticker);

@@ -159,5 +159,5 @@ const LoadingWrap = tw.div`
 relative w-full h-full
 `;
 const LoadingSpan = tw.span`
-font-bold text-2xl absolute top-[80%] left-1/2 translate-x-[-50%]
+font-bold text-2xl absolute top-[80%] left-1/2 translate-x-[-50%] animate-spin
 `;

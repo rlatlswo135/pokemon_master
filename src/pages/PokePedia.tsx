@@ -12,6 +12,7 @@ export const PokePedia = () => {
     const [pokemonList, setPokemonList] = useRecoilState(pokeListState);
     const [myPoke, setMyPoke] = useRecoilState(myPokeListState);
 
+    console.log('````````````myPoke````````````', myPoke);
     const nextPageHandler = useCallback(
         () => setPagination((prev) => prev + 1),
         []
@@ -34,22 +35,32 @@ export const PokePedia = () => {
     const next = useMemo(() => PAGINATION * pagination, [pagination]);
 
     return (
-        <Container addstyle="px-5" image="bg-defaultImage">
+        <Container addstyle="px-5 flex justify-center" image="bg-defaultImage">
             <SubContainer>
                 <div className="absolute left-[50%] flex justify-center font-bold text-2xl">{`${percent}%`}</div>
                 <GridContainer>
-                    {pokemonList.slice(prev, next).map((item: any, idx) => (
-                        <PokeCard key={`poke_${item.name}`}>
-                            <PokeImage
-                                alt="사진을 불러올수 없습니다."
-                                src={`${IMAGE_URL}/${prev + idx + 1}.png`}
-                                $exist={myPoke[idx + 1] > 0}
-                            />
-                            <div className="text-center font-bold text-xl">
-                                {POKE_NAME[prev + idx + 1]}
-                            </div>
-                        </PokeCard>
-                    ))}
+                    {pokemonList.slice(prev, next).map((item: any, idx) => {
+                        const pokemonId = idx + 1;
+                        const isExist = _.includes(
+                            Object.keys(myPoke),
+                            String(prev + pokemonId)
+                        );
+                        return (
+                            <PokeCard
+                                key={`poke_${item.name}`}
+                                $exist={isExist}
+                            >
+                                <PokeImage
+                                    alt="사진을 불러올수 없습니다."
+                                    src={`${IMAGE_URL}/${prev + pokemonId}.png`}
+                                    $exist={isExist}
+                                />
+                                <div className="text-center font-bold text-xl">
+                                    {POKE_NAME[prev + pokemonId]}
+                                </div>
+                            </PokeCard>
+                        );
+                    })}
                     <button
                         className="absolute left-3 top-1/2 text-4xl font-bold"
                         type="button"
@@ -71,14 +82,15 @@ export const PokePedia = () => {
 };
 
 const SubContainer = tw.div`
-container relative w-full h-full bg-slate-100/20
+container flex relative w-full h-full bg-subContainer
 `;
 
 const GridContainer = tw.div`
 grid grid-cols-6 gap-y-3 justify-items-center w-full h-full
 `;
 
-const PokeCard = tw.div`
+const PokeCard = tw.div<{ $exist: boolean }>`
+${({ $exist }) => ($exist ? '' : 'animate-pulse')}
 h-44 w-44
 `;
 

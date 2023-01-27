@@ -9,7 +9,12 @@ const makeDefault = (length: number) => {
     }
     return result;
 };
-export const myPokeListState = atom({
+
+type MyPokeListValue = {
+    [key: number]: number;
+};
+export const myPokeListState = atom<MyPokeListValue>({
     key: '_myPokeListState',
-    default: makeDefault(_.size(POKE_NAME)),
+    // default: makeDefault(_.size(POKE_NAME)),
+    default: {},
 });

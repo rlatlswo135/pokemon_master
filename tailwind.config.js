@@ -9,6 +9,7 @@ module.exports = {
                 goldLine: 'rgb(234 179 8)',
                 sub: 'rgb(241 245 249 / 0.2);',
                 deny: 'rgb(148 163 184 / 0.8)',
+                subContainer: 'rgb(241 245 249 / 0.2)',
             },
             borderWidth: {
                 1: '1px',

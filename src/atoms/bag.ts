@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
 import { BREADS } from '@/constants/bread';
+import { DEFAULT_BAG } from '@/constants';
 
 type Bag = {
     isOpen: boolean;
@@ -13,14 +14,6 @@ export const bagState = atom<Bag>({
     key: '_mag',
     default: {
         isOpen: false,
-        value: {
-            digda: 0,
-            fire: 0,
-            ghost: 0,
-            pika: 0,
-            purin: 0,
-            rocket: 0,
-            tutle: 0,
-        },
+        value: DEFAULT_BAG,
     },
 });
