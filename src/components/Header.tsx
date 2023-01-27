@@ -74,7 +74,7 @@ export const Header = () => {
 };
 
 const Container = tw.header`
-flex w-full justify-evenly absolute p-5 text-xl z-49 items-center bg-gray-500/40
+flex w-full justify-evenly absolute p-5 text-xl z-50 items-center bg-gray-500/40
 `;
 const SaveBtn = tw.button`
 border-2 border-red-400 p-2 rounded-2xl bg-red-500 hover:text-red-600
