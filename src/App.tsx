@@ -1,8 +1,7 @@
 import React from 'react';
-import { Header } from 'components/Header';
-import { Home, GetCoins, PokePedia, Store, MyPage } from 'pages';
 import { Route, Routes } from 'react-router-dom';
-import { MyBag } from 'components/MyBag';
+import { Header, MyBag } from '@/components';
+import { Home, PokePedia, Store, MyPage } from '@/pages';
 
 export const App = () => {
     return (

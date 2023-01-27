@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import React from 'react';
-import Container from 'components/common/Container';
+import { Container } from '@/components/common';
 
 export const MyPage = () => {
     return (
