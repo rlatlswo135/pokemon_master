@@ -1,13 +1,15 @@
 import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
+console.log(process.env);
+
 const firebaseConfig = {
-    apiKey: 'AIzaSyAfUSiJThlPEtplPaDWOw3txy-Xj6odEts',
-    authDomain: 'pokemon-148cd.firebaseapp.com',
-    projectId: 'pokemon-148cd',
-    storageBucket: 'pokemon-148cd.appspot.com',
-    messagingSenderId: '480028448283',
-    appId: '1:480028448283:web:87b31dbdf84d33fd7d8abe',
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 export const app = initializeApp(firebaseConfig);

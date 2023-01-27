@@ -12,6 +12,7 @@
         "@types/react": "^18.0.26",
         "@types/react-dom": "^18.0.10",
         "craco-alias": "^3.0.1",
+        "dotenv": "^16.0.3",
         "eslint": "^8.30.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-plugin-react-hooks": "^4.6.0",
