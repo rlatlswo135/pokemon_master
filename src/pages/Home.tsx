@@ -98,7 +98,7 @@ container w-screen h-screen min-w-full min-h-full text-lg
 bg-homeImage bg-no-repeat bg-center
 `;
 const ButtonsDiv = tw.div`
-absolute w-[30%] top-3/4 left-1/2 translate-x-[-50%] flex flex-col items-center justify-center
+absolute w-[30%] top-[65%] left-1/2 translate-x-[-50%] flex flex-col items-center justify-center
 `;
 const MenuBtn = tw.button`
 w-full h-16 bg-gold hover:bg-orange-300 rounded-2xl mt-4
