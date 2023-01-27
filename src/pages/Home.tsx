@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import { useSetRecoilState } from 'recoil';
-import { Link, redirect, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/common/Button';
-import { checkExistUser, getUsers, googleLogin } from '@/firebase/auth';
-import { getDocument, getDocuments, setDocument } from '@/firebase/store';
-import { DefaultData, DEFAULT_DATA } from '@/constants';
-import { bagState, myPokeListState, coinState } from '@/atoms';
+import { useNavigate } from 'react-router-dom';
+import { checkExistUser, googleLogin } from '@/firebase/auth';
+import { getDocument, setDocument } from '@/firebase/store';
+import { DEFAULT_DATA } from '@/constants';
+import { DefaultData } from '@/types';
+import { bagState, myPokeListState, coinState, userState } from '@/atoms';
+import { Img, Modal } from '@/components/common';
+import signGoogle from '@/assets/signGoogle.png';
 
 export const Home = () => {
     const bagSetter = useSetRecoilState(bagState);
     const pokeSetter = useSetRecoilState(myPokeListState);
     const coinSetter = useSetRecoilState(coinState);
+    const userSetter = useSetRecoilState(userState);
+
+    const [open, setOpen] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
@@ -27,7 +32,12 @@ export const Home = () => {
 
     const loginGoogle = async () => {
         const login = await googleLogin();
-        const { uid } = login.user;
+        const { uid, displayName, photoURL } = login.user;
+        userSetter({
+            uid,
+            displayName: displayName || '',
+            photoURL: photoURL || '',
+        });
         const isExist = await checkExistUser(uid);
 
         if (!isExist) {
@@ -37,28 +47,58 @@ export const Home = () => {
         navigate('/store');
     };
 
-    const test = async () => {
-        //
-        const result = await getDocuments('data');
+    const openHowToPlay = () => {};
+
+    const clickGuestHandler = () => {
+        setOpen(true);
+    };
+    const closeModal = useCallback(() => setOpen(false), []);
+
+    const loginGuest = () => {
+        userSetter((prev) => ({ ...prev, uid: 'GUEST' }));
+        navigate('/store');
     };
 
     return (
-        <HomeDiv id="home">
-            <ButtonsDiv>
-                <Link to="/store">
-                    <Button className="mr-4 hover:text-red-600">Start</Button>
-                </Link>
-                <Button onClick={test} className="ml-4 hover:text-red-600">
-                    How To Play
-                </Button>
-                <Button
-                    onClick={loginGoogle}
-                    className="ml-4 hover:text-red-600"
-                >
-                    google login
-                </Button>
-            </ButtonsDiv>
-        </HomeDiv>
+        <>
+            <HomeDiv id="home">
+                <ButtonsDiv>
+                    <MenuBtn onClick={clickGuestHandler}>Start</MenuBtn>
+                    <MenuBtn onClick={openHowToPlay}>How To Play</MenuBtn>
+                    <LoginGoogle onClick={loginGoogle}>
+                        <Img src={signGoogle} />
+                    </LoginGoogle>
+                </ButtonsDiv>
+            </HomeDiv>
+            {open && (
+                <Modal closeHandler={closeModal}>
+                    <div className="flex flex-col items-center">
+                        <p className="text-4xl font-bold">
+                            게스트로 로그인시 진행상황은 저장되지 않습니다
+                        </p>
+                        <p className="text-4xl font-bold mt-10">
+                            계속 진행하시려면 Go! 버튼을 눌러주세요.
+                        </p>
+                        <div className="flex mt-24 justify-between w-full">
+                            <button
+                                type="button"
+                                onClick={loginGuest}
+                                className="p-4 bg-gold rounded-xl w-[40%] border-goldLine border-4 hover:bg-neutral-600"
+                            >
+                                GO!
+                            </button>
+                            <button
+                                type="button"
+                                onClick={closeModal}
+                                className="p-4 bg-gold rounded-xl w-[40%] border-goldLine border-4 hover:bg-neutral-600"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </Modal>
+            )}
+        </>
     );
 };
 
@@ -68,5 +108,12 @@ bg-homeImage bg-no-repeat bg-center
 `;
 
 const ButtonsDiv = tw.div`
-absolute w-full top-3/4 flex items-center justify-center
+absolute w-[30%] top-3/4 left-1/2 translate-x-[-50%] flex flex-col items-center justify-center
+`;
+
+const MenuBtn = tw.button`
+w-full h-16 bg-gold hover:bg-orange-300 rounded-2xl mt-4
+`;
+const LoginGoogle = tw.div`
+w-full h-16 hover:cursor-pointer hover:bg-orange-300 mt-4
 `;

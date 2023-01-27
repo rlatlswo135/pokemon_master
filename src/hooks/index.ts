@@ -15,7 +15,6 @@ export const useCollectionState = <T>(
                 ...item.data(),
                 docId: item.id,
             })) as T[];
-            console.log('collection observer', result);
             setDocs(result);
         });
     }, []);

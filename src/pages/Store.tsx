@@ -6,7 +6,8 @@ import * as _ from 'lodash';
 import { useRecoilState } from 'recoil';
 import { bagState } from '@/atoms/bag';
 import { Container, Modal, Img } from '@/components/common';
-import { BREADS, BREAD_IMAGES, LOADING_IMAGES } from '@/constants';
+import { LOADING_IMAGES } from '@/constants';
+import { BREADS, BREAD_IMAGES } from '@/constants/bread';
 import { coinState } from '@/atoms/coin';
 import { priceFormat } from '@/util';
 

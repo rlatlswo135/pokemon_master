@@ -1,13 +1,13 @@
 import React, { useMemo, useCallback } from 'react';
 import tw from 'tailwind-styled-components';
 import { Link, useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { coinState, bagState, pokeListState } from '@/atoms';
-import { LUCKY, SUPER_LUCKY } from '@/constants/money';
-import { getUsers } from '@/firebase/auth';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { coinState, bagState, pokeListState, userState } from '@/atoms';
+import { LUCKY, SUPER_LUCKY } from '@/constants';
 import { updateDocument } from '@/firebase/store';
 
 export const Header = () => {
+    const currentUser = useRecoilValue(userState);
     const [coin, setCoin] = useRecoilState(coinState);
     const [bag, setBag] = useRecoilState(bagState);
     const [pokeList, setPokeList] = useRecoilState(pokeListState);
@@ -32,7 +32,6 @@ export const Header = () => {
     );
 
     const saveHandler = async () => {
-        const currentUser = getUsers();
         if (currentUser) {
             const result = await updateDocument('data', currentUser.uid, {
                 coin,

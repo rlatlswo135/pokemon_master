@@ -1,9 +1,13 @@
 /* eslint-disable global-require */
 import React from 'react';
 import tw from 'tailwind-styled-components';
+import { useRecoilValue } from 'recoil';
 import { Container, Img } from '@/components/common';
+import { userState } from '@/atoms';
 
 export const MyPage = () => {
+    const currentUser = useRecoilValue(userState);
+
     return (
         <Container
             addstyle="px-5 flex justify-center"

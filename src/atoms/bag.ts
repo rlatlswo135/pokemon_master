@@ -1,9 +1,10 @@
 import { atom } from 'recoil';
-import { DEFAULT_BAG, Bag } from '@/constants';
+import { DEFAULT_BAG } from '@/constants';
+import { BagValue } from '@/types';
 
 type BagState = {
     isOpen: boolean;
-    value: Bag;
+    value: BagValue;
 };
 
 export const bagState = atom<BagState>({

@@ -1,11 +1,5 @@
 /* eslint-disable global-require */
-import React, {
-    useState,
-    useEffect,
-    useRef,
-    useCallback,
-    Suspense,
-} from 'react';
+import React, { useState, useRef, useCallback, Suspense } from 'react';
 import tw from 'tailwind-styled-components';
 import * as _ from 'lodash';
 import { useRecoilState } from 'recoil';
@@ -14,7 +8,7 @@ import { BREADS } from '@/constants/bread';
 import { IMAGE_URL, POKE_NAME } from '@/constants/pokePedia';
 import { makePokeId } from '@/util';
 import { bagState, myPokeListState } from '@/atoms';
-import { BagKey } from '@/constants';
+import { BagKey } from '@/types';
 
 export const MyBag = () => {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -62,7 +56,6 @@ export const MyBag = () => {
             <Div $isOpen={isOpen}>
                 {/* <Breads button={breadBtnProps} grayscale /> */}
                 {BREADS.map((bread) => {
-                    console.log('value', value);
                     const quan = value[bread];
                     return (
                         <BreadWrap key={`bread-${bread}`}>

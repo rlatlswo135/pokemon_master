@@ -17,6 +17,7 @@ module.exports = {
             backgroundImage: {
                 defaultImage: "url('/src/assets/background/default.jpg')",
                 homeImage: "url('/src/assets/background/home.gif')",
+                signGoogle: "url('/src/assets/signGoogle.png')",
             },
             fontFamily: {
                 pokeFont: ['PokeFont'],

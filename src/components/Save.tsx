@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
-import { coinState, myPokeListState, bagState } from '@/atoms';
+import { coinState, myPokeListState, bagState, userState } from '@/atoms';
 import { updateDocument } from '@/firebase/store';
-import { getUsers } from '@/firebase/auth';
 
 export const Save = () => {
-    const currentUser = getUsers();
+    const currentUser = useRecoilValue(userState);
     const coin = useRecoilValue(coinState);
     const { value: bag } = useRecoilValue(bagState);
     const pokeList = useRecoilValue(myPokeListState);

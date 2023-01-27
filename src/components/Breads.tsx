@@ -25,25 +25,12 @@ export const Breads = ({
                         alt="사진을 불러올수 없습니다"
                         $grayscale={grayscale}
                     />
-                    {/* {button && (
-                        <Button
-                            className={button.className}
-                            btnClassName={button.btnClassName}
-                            onClick={button.onClick}
-                        >
-                            {button.children}
-                        </Button>
-                    )} */}
                 </div>
             ))}
         </>
     );
 };
 
-type BreadType = {
-    $grayscale: boolean;
-};
-
-const Bread = tw.img<BreadType>`
+const Bread = tw.img<{ $grayscale: boolean }>`
 w-full h-full z-50 ${(props) => (props.$grayscale ? 'grayscale' : '')}
 `;

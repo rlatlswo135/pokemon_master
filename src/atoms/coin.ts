@@ -1,7 +1,6 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 
-type Coin = number;
-export const coinState = atom<Coin>({
+export const coinState = atom<number>({
     key: '_coin',
     default: 0,
 });

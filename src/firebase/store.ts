@@ -2,7 +2,6 @@ import {
     getFirestore,
     WithFieldValue,
     collection,
-    addDoc,
     DocumentData,
     doc,
     updateDoc,

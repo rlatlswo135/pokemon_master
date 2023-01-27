@@ -14,12 +14,7 @@ export const App = () => {
         getOneGenerationPokemon().then((item) => {
             setPokemonList(item.pokemon_species);
         });
-        return () => {
-            console.log('unmount');
-        };
     }, []);
-
-    console.log('render');
 
     /*
     https://flutter-developer.medium.com/solved-privateroute-is-not-a-route-component-777e78e3205b
@@ -28,6 +23,8 @@ export const App = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<PrivateRoute />}> */}
+            {/* </Route> */}
             <Route path="/pokepedia" element={<PrivateRoute />}>
                 <Route path="/pokepedia" element={<PokePedia />} />
             </Route>
