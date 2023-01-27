@@ -20,7 +20,7 @@ export const Store = React.memo(() => {
 
     const buyBreadInfo = useMemo(
         () => [
-            { quan: 1, price: 120 },
+            { quan: 1, price: 1200 },
             { quan: 10, price: 10000 },
         ],
         []

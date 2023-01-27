@@ -19,28 +19,24 @@ export const App = () => {
         };
     }, []);
 
-    console.log('route');
+    console.log('render');
 
     /*
     https://flutter-developer.medium.com/solved-privateroute-is-not-a-route-component-777e78e3205b
     <Outlet /> <Navigate /> ?? 뭔데
     */
     return (
-        <>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/pokepedia" element={<PrivateRoute />}>
-                    <Route path="/pokepedia" element={<PokePedia />} />
-                </Route>
-                <Route path="/myPage" element={<PrivateRoute />}>
-                    <Route path="/myPage" element={<MyPage />} />
-                </Route>
-                <Route path="/store" element={<PrivateRoute />}>
-                    <Route path="/store" element={<Store />} />
-                </Route>
-            </Routes>
-            <MyBag />
-        </>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/pokepedia" element={<PrivateRoute />}>
+                <Route path="/pokepedia" element={<PokePedia />} />
+            </Route>
+            <Route path="/myPage" element={<PrivateRoute />}>
+                <Route path="/myPage" element={<MyPage />} />
+            </Route>
+            <Route path="/store" element={<PrivateRoute />}>
+                <Route path="/store" element={<Store />} />
+            </Route>
+        </Routes>
     );
 };

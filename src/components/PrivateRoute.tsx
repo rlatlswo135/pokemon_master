@@ -1,6 +1,9 @@
 import React, { ReactNode } from 'react';
 import { Route, Navigate, Outlet } from 'react-router-dom';
 import { getUsers } from '@/firebase/auth';
+import { Header } from '@/components/Header';
+import { MyBag } from '@/components/MyBag';
+import { Save } from '@/components/Save';
 
 type PrivateRouteProps = {
     children: ReactNode;
@@ -8,6 +11,14 @@ type PrivateRouteProps = {
 
 export const PrivateRoute = () => {
     const currentUser = getUsers();
-    console.log('````````````currentUser````````````', currentUser);
-    return currentUser ? <Outlet /> : <Navigate to="/" />;
+    return currentUser ? (
+        <>
+            <Header />
+            <Outlet />
+            <MyBag />
+            <Save />
+        </>
+    ) : (
+        <Navigate to="/" />
+    );
 };

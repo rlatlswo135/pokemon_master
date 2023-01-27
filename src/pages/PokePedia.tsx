@@ -12,7 +12,6 @@ export const PokePedia = () => {
     const [pokemonList, setPokemonList] = useRecoilState(pokeListState);
     const [myPoke, setMyPoke] = useRecoilState(myPokeListState);
 
-    console.log('````````````myPoke````````````', myPoke);
     const nextPageHandler = useCallback(
         () => setPagination((prev) => prev + 1),
         []

@@ -1,16 +1,12 @@
 import { atom } from 'recoil';
-import { BREADS } from '@/constants/bread';
-import { DEFAULT_BAG } from '@/constants';
+import { DEFAULT_BAG, Bag } from '@/constants';
 
-type Bag = {
+type BagState = {
     isOpen: boolean;
-    value: BagValue;
+    value: Bag;
 };
 
-export type BagValueKey = typeof BREADS[number];
-type BagValue = Record<BagValueKey, number>;
-
-export const bagState = atom<Bag>({
+export const bagState = atom<BagState>({
     key: '_mag',
     default: {
         isOpen: false,

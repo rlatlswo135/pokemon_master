@@ -8,13 +8,14 @@ import {
     updateDoc,
     setDoc,
     getDocs,
+    getDoc,
 } from 'firebase/firestore';
 import { app } from '@/firebase';
 
 export const fbStore = getFirestore(app);
 type Collection = 'data';
 
-export const getDocument = async (colName: Collection) => {
+export const getDocuments = async (colName: Collection) => {
     try {
         const ref = collection(fbStore, colName);
         const result = await getDocs(ref);
@@ -23,6 +24,20 @@ export const getDocument = async (colName: Collection) => {
             returnData[item.id] = item.data();
         });
         return returnData;
+    } catch (err: any) {
+        console.error(err);
+        throw new Error(err.code);
+    }
+};
+
+export const getDocument = async <T>(
+    colName: Collection,
+    docId: string
+): Promise<T | undefined> => {
+    try {
+        const ref = doc(fbStore, colName, docId);
+        const result = await getDoc(ref);
+        return result.data() as T;
     } catch (err: any) {
         console.error(err);
         throw new Error(err.code);

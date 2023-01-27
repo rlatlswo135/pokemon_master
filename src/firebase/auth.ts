@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth';
 import * as _ from 'lodash';
 import { app } from '@/firebase';
-import { getDocument } from './store';
+import { getDocuments } from './store';
 
 export const fbAuth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -24,9 +24,10 @@ export const googleLogin = async (): Promise<UserCredential> => {
     }
 };
 
+// **************************
 export const checkExistUser = async (uid: string) => {
     try {
-        const data = await getDocument('data');
+        const data = await getDocuments('data');
         const isExist = _.includes(Object.keys(data), uid);
         return isExist;
     } catch (err: any) {

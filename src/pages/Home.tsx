@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import tw from 'tailwind-styled-components';
+import { useSetRecoilState } from 'recoil';
 import { Link, redirect, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/common/Button';
 import { checkExistUser, getUsers, googleLogin } from '@/firebase/auth';
-import { getDocument, setDocument } from '@/firebase/store';
+import { getDocument, getDocuments, setDocument } from '@/firebase/store';
+import { DefaultData, DEFAULT_DATA } from '@/constants';
+import { bagState, myPokeListState, coinState } from '@/atoms';
 
 export const Home = () => {
+    const bagSetter = useSetRecoilState(bagState);
+    const pokeSetter = useSetRecoilState(myPokeListState);
+    const coinSetter = useSetRecoilState(coinState);
+
     const navigate = useNavigate();
-    const [isGuest, setIsGuest] = useState(false);
+
+    const setStoreData = async (uid: string) => {
+        const getData = await getDocument<DefaultData>('data', uid);
+        if (getData) {
+            const { pokeList, coin, bag } = getData;
+            bagSetter((prev) => ({ ...prev, value: bag }));
+            coinSetter(coin);
+            pokeSetter(pokeList);
+        }
+    };
 
     const loginGoogle = async () => {
         const login = await googleLogin();
@@ -15,15 +31,15 @@ export const Home = () => {
         const isExist = await checkExistUser(uid);
 
         if (!isExist) {
-            const setResult = await setDocument('data', uid, {});
+            const setResult = await setDocument('data', uid, DEFAULT_DATA);
         }
-
-        // navigate('/store');
+        const result = await setStoreData(uid);
+        navigate('/store');
     };
 
     const test = async () => {
         //
-        const result = await getDocument('data');
+        const result = await getDocuments('data');
     };
 
     return (

@@ -33,6 +33,7 @@ type BuyBread = {
     price: number;
     quan: number;
 };
+
 export const BUY_BREAD: BuyBread[] = [
     { quan: 1, price: 120 },
     { quan: 10, price: 10000 },
@@ -48,8 +49,16 @@ export const DEFAULT_BAG = {
     tutle: 0,
 };
 
+export type BagKey = typeof BREADS[number];
+export type Bag = Record<BagKey, number>;
+
+export type DefaultData = {
+    coin: number;
+    bag: Bag;
+    pokeList: { [key: number]: number };
+};
 export const DEFAULT_DATA = {
     coin: 0,
     bag: DEFAULT_BAG,
     pokeList: {},
-};
+} as const;

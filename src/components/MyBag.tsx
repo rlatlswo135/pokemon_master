@@ -14,7 +14,7 @@ import { BREADS } from '@/constants/bread';
 import { IMAGE_URL, POKE_NAME } from '@/constants/pokePedia';
 import { makePokeId } from '@/util';
 import { bagState, myPokeListState } from '@/atoms';
-import { BagValueKey } from '@/atoms/bag';
+import { BagKey } from '@/constants';
 
 export const MyBag = () => {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -25,7 +25,7 @@ export const MyBag = () => {
     const [result, setResult] = useState<number[]>([]);
     const { isOpen, value } = bag;
 
-    const openHandler = useCallback((bread: BagValueKey, quan: number) => {
+    const openHandler = useCallback((bread: BagKey, quan: number) => {
         setOpen(true);
         setBag((prev) => {
             const copy = { ...prev.value };
@@ -62,6 +62,7 @@ export const MyBag = () => {
             <Div $isOpen={isOpen}>
                 {/* <Breads button={breadBtnProps} grayscale /> */}
                 {BREADS.map((bread) => {
+                    console.log('value', value);
                     const quan = value[bread];
                     return (
                         <BreadWrap key={`bread-${bread}`}>
