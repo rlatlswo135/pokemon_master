@@ -1,11 +1,11 @@
-import digda from '@/assets/bread/digda.png';
-import fire from '@/assets/bread/fire.png';
-import ghost from '@/assets/bread/ghost.png';
-import pika from '@/assets/bread/pika.png';
-import purin from '@/assets/bread/purin.png';
-import rocket from '@/assets/bread/rocket.png';
-import tutle from '@/assets/bread/tutle.png';
-import { BreadImages, BuyBread } from '@/types';
+import digda from '../../public/bread/digda.png';
+import fire from '../../public/bread/fire.png';
+import ghost from '../../public/bread/ghost.png';
+import pika from '../../public/bread/pika.png';
+import purin from '../../public/bread/purin.png';
+import rocket from '../../public/bread/rocket.png';
+import tutle from '../../public/bread/tutle.png';
+import { BuyBread, BreadImages } from '../types';
 
 export const BREAD_IMAGES: BreadImages = {
     digda,

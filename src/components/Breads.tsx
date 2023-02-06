@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 import React, { useMemo } from 'react';
 import tw from 'tailwind-styled-components';
-import { BREADS } from '@/constants/bread';
+import { BREADS } from 'src/constants/bread';
 
 export type BreadsProps = {
     width?: string;
@@ -21,7 +21,7 @@ export const Breads = ({
                     key={`bread-${bread}`}
                 >
                     <Bread
-                        src={require(`../assets/bread/${bread}.png`)}
+                        src={require(`../../public/bread/${bread}.png`)}
                         alt="사진을 불러올수 없습니다"
                         $grayscale={grayscale}
                     />

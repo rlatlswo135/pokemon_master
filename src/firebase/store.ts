@@ -10,7 +10,7 @@ import {
     getDoc,
     deleteDoc,
 } from 'firebase/firestore';
-import { app } from '@/firebase';
+import { app } from '../firebase';
 
 export const fbStore = getFirestore(app);
 type Collection = 'data';

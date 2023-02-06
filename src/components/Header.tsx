@@ -1,13 +1,14 @@
 import React, { useMemo, useCallback, useState } from 'react';
 import tw from 'tailwind-styled-components';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { coinState, bagState, userState, myPokeListState } from '@/atoms';
-import { LUCKY, SUPER_LUCKY } from '@/constants';
-import { updateDocument } from '@/firebase/store';
+import { coinState, bagState, userState, myPokeListState } from '../atoms';
+import { LUCKY, SUPER_LUCKY } from '../constants';
+import { updateDocument } from '../firebase/store';
 
 export const Header = () => {
-    const { pathname: pathName } = useLocation();
+    const { pathname: pathName } = useRouter();
 
     const currentUser = useRecoilValue(userState);
     const [coin, setCoin] = useRecoilState(coinState);
@@ -61,10 +62,10 @@ export const Header = () => {
             {routeItems.map((url) => (
                 <Link
                     key={`header-url-${url}`}
+                    href={`/${url}`}
                     className={`${
                         pathName === `/${url}` ? 'text-red-600' : ''
                     } hover:text-red-600 `}
-                    to={`/${url}`}
                 >
                     {url}
                 </Link>

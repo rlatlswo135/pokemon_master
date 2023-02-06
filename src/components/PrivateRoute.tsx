@@ -11,6 +11,7 @@ export const PrivateRoute = () => {
     return currentUser.uid.length ? (
         <>
             <Header />
+            {/* 요 Outlet이 element로 받는 놈 */}
             <Outlet />
             <MyBag />
             <Save />

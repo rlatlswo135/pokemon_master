@@ -1,7 +1,10 @@
-// const defaultTheme = require('tailwindcss/defaultTheme');
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    content: [
+        './pages/**/*.{js,ts,jsx,tsx}',
+        './app/**/*.{js,ts,jsx,tsx}',
+        './components/**/*.{js,ts,jsx,tsx}',
+    ],
     theme: {
         extend: {
             colors: {
@@ -15,9 +18,9 @@ module.exports = {
                 1: '1px',
             },
             backgroundImage: {
-                defaultImage: "url('/src/assets/background/default.jpg')",
-                homeImage: "url('/src/assets/background/home.gif')",
-                signGoogle: "url('/src/assets/signGoogle.png')",
+                defaultImage: "url('public/background/default.jpg')",
+                homeImage: "url('public/background/home.gif')",
+                signGoogle: "url('public/signGoogle.png')",
             },
             fontFamily: {
                 pokeFont: ['PokeFont'],

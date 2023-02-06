@@ -1,18 +1,9 @@
 {
-    "extends": [
-        "airbnb",
-        "plugin:prettier/recommended",
-        "plugin:react-hooks/recommended"
-    ],
     "env": {
         "browser": true,
         "node": true
     },
     "ignorePatterns": ["build", "dist", "public"],
-    "parser": "@babel/eslint-parser",
-    "parserOptions": {
-        "requireConfigFile": "false"
-    },
     "rules": {
         "react/jsx-filename-extension": [0],
         "import/extensions": "off",
@@ -29,5 +20,12 @@
         "jsx-a11y/control-has-associated-label": 0,
         "jsx-a11y/no-static-element-interactions": 0,
         "jsx-a11y/click-events-have-key-events": 0
-    }
+    },
+    "extends": ["eslint:recommended", "next", "plugin:prettier/recommended"],
+    "parser": "@babel/eslint-parser"
+    // "parserOptions": {
+    // "requireConfigFile": "false"
+    // }
 }
+
+// "plugin:@next/next/recommend"

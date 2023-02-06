@@ -28,14 +28,15 @@ export const Modal = React.memo(
         }, []);
         return (
             <Container
+                // className="border-2 absolute top-0 z-50 py-40"
+                id="modal"
+                width={width}
+                height={height}
                 ref={(e) => {
                     if (e) {
                         containerRef.current = e;
                     }
                 }}
-                width={width}
-                height={height}
-                id="modal"
             >
                 <ContentWrap>
                     {children}
@@ -49,8 +50,8 @@ export const Modal = React.memo(
 );
 
 const Container = tw.div<{ width: string; height: string }>`
-${({ width, height }) => `${width} ${height}`}
 absolute top-0 z-50 py-40
+${({ width, height }) => `${width} ${height}`}
 `;
 const ContentWrap = tw.div`
 max-w-full max-h-full relative bg-slate-500/90 flex flex-col items-center justify-evenly w-full h-full

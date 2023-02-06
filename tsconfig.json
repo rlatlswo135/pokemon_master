@@ -2,15 +2,11 @@
     "compilerOptions": {
         "baseUrl": "./",
         "paths": {
-            "@/*": ["src/*"],
-            "@atoms": ["src/atoms/*"],
-            "@components": ["src/components/*"],
-            "@constants": ["src/constants/*"],
-            "@hooks": ["src/hooks/*"],
-            "@pages": ["src/pages/*"],
-            "@assets": ["src/assets/*"],
-            "@api": ["src/api/*"],
-            "@util": ["src/util/*"]
+            "@": ["/*"],
+            "@pages": ["pages/*"],
+            "@public": ["public/*"],
+            "@types": ["types/*"],
+            "@constants": ["constants/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
@@ -26,7 +22,9 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx"
+        "jsx": "preserve",
+        "incremental": true
     },
-    "include": ["src", "public"]
+    "include": ["src", "public", "constants", "types"],
+    "exclude": ["node_modules", ".next"]
 }

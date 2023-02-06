@@ -4,11 +4,11 @@ import tw from 'tailwind-styled-components';
 import * as _ from 'lodash';
 import { useRecoilState } from 'recoil';
 import { Img, Modal } from './common';
-import { BREADS } from '@/constants/bread';
-import { IMAGE_URL, POKE_NAME } from '@/constants/pokePedia';
-import { makePokeId } from '@/util';
-import { bagState, myPokeListState } from '@/atoms';
-import { BagKey } from '@/types';
+import { BREADS } from '../constants/bread';
+import { IMAGE_URL, POKE_NAME } from '../constants/pokePedia';
+import { makePokeId } from '../util';
+import { bagState, myPokeListState } from '../atoms';
+import { BagKey } from '../types';
 
 export const MyBag = () => {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -60,7 +60,7 @@ export const MyBag = () => {
                     return (
                         <BreadWrap key={`bread-${bread}`}>
                             <Bread
-                                src={require(`../assets/bread/${bread}.png`)}
+                                src={require(`../../public/bread/${bread}.png`)}
                                 alt="사진을 불러올수 없습니다"
                                 $grayscale={quan < 1}
                             />

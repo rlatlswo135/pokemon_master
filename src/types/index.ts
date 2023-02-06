@@ -1,4 +1,4 @@
-import { BREADS } from '@/constants/bread';
+import { BREADS } from 'src/constants/bread';
 
 export type BuyBread = {
     price: number;
