@@ -17,7 +17,6 @@ export const PokePediaView = ({
     return (
         <Container
         // addstyle="px-5 flex justify-center"
-        // image="bg-defaultImage"
         >
             <SubContainer>
                 <Percent>{`${percent}%`}</Percent>
@@ -28,21 +27,28 @@ export const PokePediaView = ({
                             Object.keys(myPoke),
                             String(prev + pokemonId)
                         );
-                        console.log(
-                            'image',
-                            `${IMAGE_URL}/${prev + pokemonId}.png`
-                        );
                         return (
                             <PokeCard
                                 key={`poke_${item.name}`}
                                 $exist={isExist}
                             >
-                                <Image
-                                    alt="사진을 불러올수 없습니다."
-                                    src={`${IMAGE_URL}/${prev + pokemonId}.png`}
-                                    fill
-                                    // $exist={isExist}
-                                />
+                                <div
+                                    className={`${
+                                        isExist ? '' : 'grayscale'
+                                    } w-full h-40 relative`}
+                                >
+                                    <Image
+                                        fill
+                                        priority
+                                        sizes="(max-width: 768px) 20vw,
+                                        (max-width: 1200px) 15vw,
+                                        10vw"
+                                        alt="사진을 불러올수 없습니다."
+                                        src={`${IMAGE_URL}/${
+                                            prev + pokemonId
+                                        }.png`}
+                                    />
+                                </div>
                                 <PokeName>
                                     {POKE_NAME[prev + pokemonId]}
                                 </PokeName>
@@ -70,10 +76,6 @@ ${({ $exist }) => ($exist ? '' : 'animate-pulse')}
 h-44 w-44
 `;
 
-const PokeImage = tw.img<{ $exist: boolean }>`
-${({ $exist }) => ($exist ? '' : 'grayscale')}
-w-full h-full
-`;
 const PokeName = tw.div`
 text-center font-bold text-xl
 `;

@@ -23,3 +23,22 @@ export type DefaultData = {
     bag: BagValue;
     pokeList: { [key: number]: number };
 };
+
+type NameAndUrl = {
+    name: string;
+    url: string;
+};
+export type PokemonAPI = {
+    abilities: string[];
+    id: number;
+    main_region: NameAndUrl;
+    moves: NameAndUrl[];
+    name: string;
+    names: {
+        language: NameAndUrl;
+        name: string;
+    }[];
+    pokemon_species: NameAndUrl[];
+    types: NameAndUrl[];
+    version_groups: NameAndUrl[];
+};

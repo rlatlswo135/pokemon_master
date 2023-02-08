@@ -16,16 +16,15 @@ export const HomeView = ({
             <HomeDiv id="home">
                 <ButtonsDiv>
                     <MenuBtn onClick={clickGuestHandler}>Start</MenuBtn>
-                    <Link href="/how">
-                        <MenuBtn>How To Play</MenuBtn>
-                    </Link>
-                    <LoginGoogle onClick={loginGoogle}>
-                        <Image
-                            src="/signGoogle.png"
-                            alt="error"
-                            width={'100'}
-                            height={'50'}
+                    <MenuBtn>
+                        <Link
+                            className="flex w-full h-full absolute inset-0 justify-center items-center"
+                            href="/how"
                         />
+                        How To Play
+                    </MenuBtn>
+                    <LoginGoogle onClick={loginGoogle}>
+                        <Image src="/signGoogle.png" fill alt="error" />
                     </LoginGoogle>
                 </ButtonsDiv>
             </HomeDiv>
@@ -42,7 +41,7 @@ export const HomeView = ({
                             <ModalBtn onClick={loginGuest}>
                                 <Link
                                     href="store"
-                                    className="block border-2 w-full h-full absolute inset-0"
+                                    className="flex w-full h-full absolute inset-0 justify-center items-center"
                                 >
                                     GO!
                                 </Link>
@@ -58,16 +57,16 @@ export const HomeView = ({
 
 const HomeDiv = tw.div`
 container w-screen h-screen min-w-full min-h-full text-lg
-bg-homeImage bg-no-repeat bg-center bg-subContainer
+bg-homeImage bg-no-repeat bg-center
 `;
 const ButtonsDiv = tw.div`
 absolute w-[30%] top-[65%] left-1/2 translate-x-[-50%] flex flex-col items-center justify-center
 `;
 const MenuBtn = tw.button`
-w-full h-16 bg-gold hover:bg-orange-300 rounded-2xl mt-4
+relative w-full h-16 bg-gold hover:bg-orange-300 rounded-2xl mt-4
 `;
-const LoginGoogle = tw.div`
-w-full h-16 hover:cursor-pointer hover:bg-orange-300 mt-4
+const LoginGoogle = tw.button`
+relative w-full h-16 hover:bg-orange-300 rounded-2xl mt-4
 `;
 const ModalTextWrap = tw.div`
 flex flex-col items-center

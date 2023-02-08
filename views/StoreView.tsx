@@ -32,7 +32,11 @@ export const StoreView = ({
                                         Object.keys(BREAD_IMAGES)[breadIdx]
                                     ]
                                 }
+                                priority
                                 alt="error"
+                                sizes="(max-width: 768px) 50vw,
+                                        (max-width: 1200px) 40vw,
+                                        30vw"
                             />
                         )}
                     </ImageWrap>

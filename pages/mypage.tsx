@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import * as _ from 'lodash';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, bagState, myPokeListState } from '../src/atoms';
-import { getPercent, makeRandom } from '../src/util';
+import { getPercent } from '../src/util';
 import { POKE_NAME } from '../src/constants/pokePedia';
 import { deleteDocument } from '../src/firebase/store';
 import { deleteAuth, signOutAuth } from '../src/firebase/auth';

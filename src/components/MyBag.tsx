@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import React, { useState, useRef, useCallback, Suspense } from 'react';
 import tw from 'tailwind-styled-components';
+import Image from 'next/image';
 import * as _ from 'lodash';
 import { useRecoilState } from 'recoil';
 import { Img, Modal } from './common';
@@ -60,11 +61,20 @@ export const MyBag = () => {
                     const quan = value[bread];
                     return (
                         <BreadWrap key={`bread-${bread}`}>
-                            <Bread
-                                src={require(`../../public/bread/${bread}.png`)}
-                                alt="사진을 불러올수 없습니다"
-                                $grayscale={quan < 1}
-                            />
+                            <div
+                                className={`${
+                                    quan < 1 ? 'grayscale' : ''
+                                } w-full h-40 relative`}
+                            >
+                                <Image
+                                    fill
+                                    sizes="(max-width: 768px) 20vw,
+                                    (max-width: 1200px) 15vw,
+                                    10vw"
+                                    src={`/bread/${bread}.png`}
+                                    alt="사진을 불러올수 없습니다"
+                                />
+                            </div>
                             <Button
                                 type="button"
                                 quan={quan}
@@ -115,10 +125,6 @@ relative flex flex-col items-center w-40
 const Button = tw.button<{ quan: number }>`
 ${({ quan }) => (!quan ? 'bg-deny' : 'bg-gold')}
 mt-2 p-2 border-1 rounded-2xl
-`;
-
-const Bread = tw.img<{ $grayscale: boolean }>`
-w-full h-full z-50 ${(props) => (props.$grayscale ? 'grayscale' : '')}
 `;
 
 const Quan = tw.span`
