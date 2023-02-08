@@ -17,7 +17,7 @@ export const Header = () => {
 
     const [loading, setLoading] = useState<Boolean>(false);
 
-    const routeItems = useMemo(() => ['myPage', 'pokepedia', 'store'], []);
+    const routeItems = useMemo(() => ['myPage', 'pokePedia', 'store'], []);
     const isGuest = useMemo(() => currentUser.uid === 'GUEST', [currentUser]);
 
     const toggleBagOpen = useCallback(() => {

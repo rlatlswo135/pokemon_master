@@ -47,6 +47,7 @@ export const MyBag = () => {
 
     return (
         <div
+            id="myBag"
             ref={(e) => {
                 if (e) {
                     containerRef.current = e;

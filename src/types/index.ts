@@ -5,15 +5,18 @@ export type BuyBread = {
     quan: number;
 };
 
-export type BagKey = typeof BREADS[number];
+export type BagKey = (typeof BREADS)[number];
 export type BagValue = Record<BagKey, number>;
 
-export type BreadImages = {
-    [key: string]: string;
+export type BagState = {
+    isOpen: boolean;
+    value: BagValue;
 };
-export type MyPokeListValue = {
-    [key: number]: number;
-};
+
+// 이거 타입 수정이 좀 필요해보임;
+export type BreadImages = Record<BagKey, string>;
+
+export type MyPokeListValue = Record<number, number>;
 
 export type DefaultData = {
     coin: number;

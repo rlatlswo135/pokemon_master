@@ -7,51 +7,40 @@ type ModalProps = {
     height?: string;
     closeHandler: () => void;
 };
-export const Modal = React.memo(
-    ({
-        children,
-        closeHandler,
-        width = 'w-full',
-        height = 'h-full',
-    }: ModalProps) => {
-        const containerRef = useRef<HTMLDivElement | null>(null);
-        useEffect(() => {
-            const event = (e: MouseEvent) => {
-                if (containerRef.current === e.target) {
-                    closeHandler();
+export const Modal = React.memo(({ children, closeHandler }: ModalProps) => {
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        const event = (e: MouseEvent) => {
+            if (containerRef.current === e.target) {
+                closeHandler();
+            }
+        };
+        document.addEventListener('click', event);
+        return () => {
+            document.removeEventListener('click', event);
+        };
+    }, []);
+    return (
+        <Container
+            id="modal"
+            ref={(e) => {
+                if (e) {
+                    containerRef.current = e;
                 }
-            };
-            document.addEventListener('click', event);
-            return () => {
-                document.removeEventListener('click', event);
-            };
-        }, []);
-        return (
-            <Container
-                // className="border-2 absolute top-0 z-50 py-40"
-                id="modal"
-                width={width}
-                height={height}
-                ref={(e) => {
-                    if (e) {
-                        containerRef.current = e;
-                    }
-                }}
-            >
-                <ContentWrap>
-                    {children}
-                    <Close type="button" onClick={closeHandler}>
-                        X
-                    </Close>
-                </ContentWrap>
-            </Container>
-        );
-    }
-);
+            }}
+        >
+            <ContentWrap>
+                {children}
+                <Close type="button" onClick={closeHandler}>
+                    X
+                </Close>
+            </ContentWrap>
+        </Container>
+    );
+});
 
-const Container = tw.div<{ width: string; height: string }>`
-absolute top-0 z-50 py-40
-${({ width, height }) => `${width} ${height}`}
+const Container = tw.div`
+absolute top-0 z-50 py-40 w-full h-full
 `;
 const ContentWrap = tw.div`
 max-w-full max-h-full relative bg-slate-500/90 flex flex-col items-center justify-evenly w-full h-full

@@ -1,40 +1,24 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import * as _ from 'lodash';
+import React from 'react';
 import tw from 'tailwind-styled-components';
-import { pokeListState, myPokeListState } from '@/atoms';
-import { Container } from '@/components/common';
-import { IMAGE_URL, PAGINATION, POKE_NAME } from '@/constants/pokePedia';
-import { getPercent } from '@/util';
+import * as _ from 'lodash';
+import Image from 'next/image';
+import { Container } from '../src/components/common';
+import { IMAGE_URL, POKE_NAME } from '../src/constants/pokePedia';
 
-export const PokePedia = () => {
-    const [pagination, setPagination] = useState<number>(1);
-    const [pokemonList, setPokemonList] = useRecoilState(pokeListState);
-    const [myPoke, setMyPoke] = useRecoilState(myPokeListState);
-
-    const nextPageHandler = useCallback(
-        () => setPagination((prev) => prev + 1),
-        []
-    );
-
-    const prevPageHandler = useCallback(
-        () =>
-            setPagination((prev) => {
-                if (prev === 1) return prev;
-                return prev - 1;
-            }),
-        []
-    );
-
-    const percent = getPercent(
-        Object.values(myPoke).filter((a) => a > 0).length,
-        _.size(POKE_NAME)
-    );
-    const prev = useMemo(() => PAGINATION * (pagination - 1), [pagination]);
-    const next = useMemo(() => PAGINATION * pagination, [pagination]);
-
+export const PokePediaView = ({
+    percent,
+    pokemonList,
+    myPoke,
+    prev,
+    next,
+    prevPageHandler,
+    nextPageHandler,
+}) => {
     return (
-        <Container addstyle="px-5 flex justify-center" image="bg-defaultImage">
+        <Container
+        // addstyle="px-5 flex justify-center"
+        // image="bg-defaultImage"
+        >
             <SubContainer>
                 <Percent>{`${percent}%`}</Percent>
                 <GridContainer>
@@ -44,15 +28,20 @@ export const PokePedia = () => {
                             Object.keys(myPoke),
                             String(prev + pokemonId)
                         );
+                        console.log(
+                            'image',
+                            `${IMAGE_URL}/${prev + pokemonId}.png`
+                        );
                         return (
                             <PokeCard
                                 key={`poke_${item.name}`}
                                 $exist={isExist}
                             >
-                                <PokeImage
+                                <Image
                                     alt="사진을 불러올수 없습니다."
                                     src={`${IMAGE_URL}/${prev + pokemonId}.png`}
-                                    $exist={isExist}
+                                    fill
+                                    // $exist={isExist}
                                 />
                                 <PokeName>
                                     {POKE_NAME[prev + pokemonId]}
@@ -69,7 +58,7 @@ export const PokePedia = () => {
 };
 
 const SubContainer = tw.div`
-container flex relative w-full h-full bg-subContainer
+flex relative w-full h-full bg-subContainer px-5
 `;
 
 const GridContainer = tw.div`

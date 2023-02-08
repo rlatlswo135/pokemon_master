@@ -56,6 +56,7 @@
     "devDependencies": {
         "@next/eslint-plugin-next": "^13.1.6",
         "@types/lodash": "^4.14.191",
+        "@types/uuid": "^9.0.0",
         "eslint-config-next": "^13.1.6",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",

@@ -3,6 +3,7 @@ import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { MyBag, Save, Header } from '../src/components';
 import '../global.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -21,7 +22,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                     content="Web site created using create-react-app"
                 />
             </Head>
+            <Header />
             <Component {...pageProps} />
+            <MyBag />
+            <Save />
         </RecoilRoot>
     );
 }

@@ -1,99 +1,38 @@
-/* eslint-disable global-require */
-/* eslint-disable react/no-array-index-key */
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import tw from 'tailwind-styled-components';
-import * as _ from 'lodash';
-import { useRecoilState } from 'recoil';
-import { bagState } from '@/atoms/bag';
-import { Container, Modal, Img } from '@/components/common';
-import { LOADING_IMAGES } from '@/constants';
-import { BREADS, BREAD_IMAGES } from '@/constants/bread';
-import { coinState } from '@/atoms/coin';
-import { priceFormat } from '@/util';
+import { BREAD_IMAGES } from '../src/constants/bread';
+import { Modal, Container } from '../src/components/common';
+import { LOADING_IMAGES } from '../src/constants';
+import { priceFormat } from '../src/util';
 
-export const Store = React.memo(() => {
-    const [coin, setCoin] = useRecoilState(coinState);
-    const [bag, setBag] = useRecoilState(bagState);
-    // 1개 1200 10개 10000원
-    const [breadIdx, setBreadIdx] = useState<number>(0);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [result, setResult] = useState<string[]>([]);
-
-    const buyBreadInfo = useMemo(
-        () => [
-            { quan: 1, price: 1200 },
-            { quan: 10, price: 10000 },
-        ],
-        []
-    );
-
-    const spendCoin = useCallback((price: number) => {
-        setCoin((prev) => {
-            if (prev < price) return prev;
-            return prev - price;
-        });
-    }, []);
-
-    const getBread = useCallback(
-        (quan: number, price: number) => {
-            if (coin < price) return;
-            setLoading(true);
-            setResult([]);
-            const gatcha: string[] = [];
-            for (let i = 0; i < quan; i += 1) {
-                const bread = BREADS[Math.floor(Math.random() * BREADS.length)];
-                gatcha.push(bread);
-                setBag((prev) => {
-                    const copy = { ...prev.value };
-                    copy[bread] += 1;
-                    return { ...prev, value: copy };
-                });
-            }
-            spendCoin(price);
-            setTimeout(() => {
-                setLoading(false);
-                setResult(gatcha);
-            }, 1000);
-        },
-        [coin]
-    );
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setBreadIdx((prev) => {
-                if (prev === BREADS.length - 1) {
-                    return 0;
-                }
-                return prev + 1;
-            });
-        }, 100);
-        return () => {
-            console.log('clear');
-            clearInterval(interval);
-        };
-    }, []);
-
+export const StoreView = ({
+    setResult,
+    coin,
+    loading,
+    breadIdx,
+    buyBreadInfo,
+    getBread,
+    result,
+}) => {
     return (
         <>
-            <Container
-                addstyle="flex justify-center bg-opacity-30 relative"
-                id="store"
-                image="bg-defaultImage"
-            >
+            <Container>
                 <SubContainer>
                     <ImageWrap>
                         {loading ? (
                             <LoadingWrap>
-                                <Img src={LOADING_IMAGES} />
+                                <Image alt="error" src={LOADING_IMAGES} fill />
                                 <LoadingSpan>Loading...</LoadingSpan>
                             </LoadingWrap>
                         ) : (
-                            <Img
+                            <Image
                                 src={
                                     BREAD_IMAGES[
                                         Object.keys(BREAD_IMAGES)[breadIdx]
                                     ]
                                 }
+                                alt="error"
                             />
                         )}
                     </ImageWrap>
@@ -120,11 +59,10 @@ export const Store = React.memo(() => {
                         }`}
                     >
                         {result.map((bread, idx) => (
-                            <Img
+                            <Image
+                                alt="error"
                                 key={`bread-result-${bread}-${idx}`}
                                 src={BREAD_IMAGES[bread]}
-                                width="w-15"
-                                height="h-15"
                             />
                         ))}
                     </div>
@@ -143,10 +81,10 @@ export const Store = React.memo(() => {
             )}
         </>
     );
-});
+};
 
 const SubContainer = tw.div`
-container flex-col flex justify-center items-center w-full h-full p-5 bg-sub
+container flex-col flex justify-center items-center w-full h-full p-5 bg-sub 
 `;
 const ImageWrap = tw.div`
 rounded-xl border-8 w-[40%] h-[30%] flex items-center border-black/30 bg-slate-500/80 justify-center

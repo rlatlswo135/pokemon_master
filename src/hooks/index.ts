@@ -1,6 +1,6 @@
 import { collection, doc, DocumentData, onSnapshot } from 'firebase/firestore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { fbStore } from '@/firebase/store';
+import { fbStore } from '../firebase/store';
 
 export const useCollectionState = <T>(
     colName: any,
