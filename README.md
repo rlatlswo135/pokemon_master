@@ -11,5 +11,8 @@
 ### 개선해야할 것
 - 중복찾아서 제거 및 이미지 lazy로딩 방법
 - 스티커별 확률 별개로
+- 반응형 디자인 개선
+
+### Next.js로 마이그레이션 진행중...
 
 <img width="428" alt="사악한꼬부기" src="https://user-images.githubusercontent.com/81791674/211190831-49aa48bd-5f6c-457b-80ef-c81e2835b87d.png">
