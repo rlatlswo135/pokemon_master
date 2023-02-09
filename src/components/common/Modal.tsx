@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useEffect, ReactNode, useRef } from 'react';
 import tw from 'tailwind-styled-components';
 

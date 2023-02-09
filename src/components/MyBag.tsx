@@ -4,7 +4,7 @@ import tw from 'tailwind-styled-components';
 import Image from 'next/image';
 import _ from 'lodash';
 import { useRecoilState } from 'recoil';
-import { Img, Modal } from '@components/common';
+import { Modal } from '@components/common';
 import { BREADS } from '@constants/bread';
 import { IMAGE_URL, POKE_NAME } from '@constants/pokePedia';
 import { makePokeId } from '@util';

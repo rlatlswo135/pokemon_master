@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useCallback, useMemo } from 'react';
 import _ from 'lodash';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
@@ -12,7 +13,7 @@ import { MyPageView } from '@views';
 const MyPage = React.memo(() => {
     const { value: bag } = useRecoilValue(bagState) as BagState;
     const myPoke = useRecoilValue(myPokeListState) as MyPokeListValue;
-    const [{ displayName, photoURL, uid }, setUser] = useRecoilState(userState);
+    const [{ displayName, photoURL, uid }] = useRecoilState(userState);
     const resetUser = useResetRecoilState(userState);
 
     const percent = getPercent(

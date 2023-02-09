@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { bagState, coinState } from '@atoms';
