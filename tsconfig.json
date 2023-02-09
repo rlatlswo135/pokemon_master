@@ -1,16 +1,36 @@
 {
     "compilerOptions": {
-        "baseUrl": "./",
+        "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"],
-            "@atoms": ["src/atoms/*"],
-            "@components": ["src/components/*"],
-            "@constants": ["src/constants/*"],
-            "@hooks": ["src/hooks/*"],
-            "@pages": ["src/pages/*"],
-            "@assets": ["src/assets/*"],
-            "@api": ["src/api/*"],
-            "@util": ["src/util/*"]
+            "@public": ["public"],
+            "@public/*": ["public/*"],
+
+            "@constants": ["src/constants"],
+            "@constants/*": ["src/constants/*"],
+
+            "@views": ["views"],
+            "@views/*": ["views/*"],
+
+            "@src": ["src"],
+            "@src/*": ["src/*"],
+
+            "@components": ["src/components"],
+            "@components/*": ["src/components/*"],
+
+            "@fb": ["src/fb"],
+            "@fb/*": ["src/fb/*"],
+
+            "@types": ["src/types"],
+            "@types/*": ["src/types/*"],
+
+            "@util": ["src/util"],
+            "@util/*": ["src/util/*"],
+
+            "@atoms": ["src/atoms"],
+            "@atoms/*": ["src/atoms/*"],
+
+            "@api": ["src/api"],
+            "@api/*": ["src/api/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
@@ -26,7 +46,9 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx"
+        "jsx": "preserve",
+        "incremental": true
     },
-    "include": ["src", "public"]
+    "include": ["src", "pages", "views"],
+    "exclude": ["node_modules", ".next"]
 }

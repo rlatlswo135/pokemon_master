@@ -1,14 +1,10 @@
 import { atom } from 'recoil';
-import { DEFAULT_BAG } from '@/constants';
-import { BagValue } from '@/types';
-
-type BagState = {
-    isOpen: boolean;
-    value: BagValue;
-};
+import { v1 } from 'uuid';
+import { DEFAULT_BAG } from 'src/constants';
+import { BagState } from 'src/types';
 
 export const bagState = atom<BagState>({
-    key: '_mag',
+    key: `_myBag/${v1()}`,
     default: {
         isOpen: false,
         value: DEFAULT_BAG,

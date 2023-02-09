@@ -6,8 +6,8 @@ import {
     deleteUser,
     signOut,
 } from 'firebase/auth';
-import * as _ from 'lodash';
-import { app } from '@/firebase';
+import _ from 'lodash';
+import { app } from '@fb';
 import { getDocuments } from './store';
 
 export const fbAuth = getAuth(app);

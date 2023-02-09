@@ -1,16 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Header } from '@/components';
-import { Container } from '@/components/common';
+import Link from 'next/link';
+import { Container } from '@components/common';
 
-export const HowPlay = () => {
-    const navigate = useNavigate();
+export const HowView = () => {
     return (
         <>
-            <Header />
             {/* 가림막 */}
             <div className="w-full absolute top-0 h-[100%] opacity-60 z-50" />
-            <Container image="bg-defaultImage">
+            <Container>
                 <div className="bg-sub w-full h-full flex justify-center items-center text-3xl flex-col">
                     <p className="font-bold">
                         상단 <span className="text-yellow-500">노란색</span>{' '}
@@ -27,9 +24,8 @@ export const HowPlay = () => {
                     <button
                         type="button"
                         className="absolute top-[80%] z-50 p-4 bg-gold rounded-2xl hover:bg-red-200"
-                        onClick={() => navigate('/')}
                     >
-                        Go back
+                        <Link href="/">Go back</Link>
                     </button>
                 </div>
             </Container>

@@ -1,17 +1,14 @@
 @font-face {
     font-family: 'PokeFont';
-    src: url('./assets/font/Poke1.ttf') format('truetype');
+    src: url('./public/font/Poke1.ttf') format('truetype');
     font-weight: 700;
 }
 
 @tailwind base;
+
 @layer base {
     body {
         @apply font-pokeFont;
-        /*
-        @apply 이후 적용할 tailwindcss 문법 적용
-        ex) h1 text-xl
-        */
         overflow: hidden;
     }
 }

@@ -1,8 +1,9 @@
 import { atom } from 'recoil';
-import * as _ from 'lodash';
-import { MyPokeListValue } from '@/types';
+import { v1 } from 'uuid';
+import _ from 'lodash';
+import { MyPokeListValue } from 'src/types';
 
 export const myPokeListState = atom<MyPokeListValue>({
-    key: '_myPokeListState',
+    key: `_myPokeListState/${v1()}`,
     default: {},
 });

@@ -1,5 +1,5 @@
-import loading from '@/assets/loading.gif';
-import { BagValue, DefaultData } from '@/types';
+import loading from 'public/loading.gif';
+import { BagValue, DefaultData } from 'src/types';
 
 export const LUCKY: number = 0.05;
 export const SUPER_LUCKY: number = 0.01;

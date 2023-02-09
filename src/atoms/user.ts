@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { v1 } from 'uuid';
 
 type UserState = {
     displayName: string;
@@ -7,7 +8,7 @@ type UserState = {
 };
 
 export const userState = atom<UserState>({
-    key: '_user',
+    key: `_user/${v1()}`,
     default: {
         displayName: '',
         photoURL: '',

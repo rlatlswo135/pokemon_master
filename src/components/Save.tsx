@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
-import { coinState, myPokeListState, bagState, userState } from '@/atoms';
-import { updateDocument } from '@/firebase/store';
+import { coinState, myPokeListState, bagState, userState } from '@atoms';
+import { updateDocument } from '@fb/store';
 
 export const Save = () => {
     const currentUser = useRecoilValue(userState);
