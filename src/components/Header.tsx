@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useMemo, useCallback, useState, useRef } from 'react';
 import tw from 'tailwind-styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -20,20 +20,40 @@ export const Header = () => {
     const routeItems = useMemo(() => ['myPage', 'pokePedia', 'store'], []);
     const isGuest = useMemo(() => currentUser.uid === 'GUEST', [currentUser]);
 
+    const gatCha = useRef<null | 'LUCKY' | 'SUPER_LUCKY'>(null);
+    const gatChatText = useCallback(
+        (gatCha: null | 'LUCKY' | 'SUPER_LUCKY') => {
+            switch (gatCha) {
+                case 'LUCKY':
+                    return 'LUCKY!';
+                case 'SUPER_LUCKY':
+                    return 'GATCHA!';
+                default:
+                    return '';
+            }
+        },
+        []
+    );
+
     const toggleBagOpen = useCallback(() => {
         setBag((prev) => ({ ...prev, isOpen: !prev.isOpen }));
     }, []);
 
-    const getCoins = useCallback(
-        () =>
-            setCoin((prev) => {
-                const per: number = Math.random();
-                if (per < SUPER_LUCKY) return prev + 10000;
-                if (per < LUCKY) return prev + 1000;
-                return prev + 100;
-            }),
-        []
-    );
+    const getCoins = useCallback(() => {
+        gatCha.current = null;
+        setCoin((prev) => {
+            const per: number = Math.random();
+            if (per < SUPER_LUCKY) {
+                gatCha.current = 'SUPER_LUCKY';
+                return prev + 10000;
+            }
+            if (per < LUCKY) {
+                gatCha.current = 'LUCKY';
+                return prev + 1000;
+            }
+            return prev + 100;
+        });
+    }, []);
 
     const saveHandler = async () => {
         if (currentUser && !isGuest) {
@@ -57,7 +77,14 @@ export const Header = () => {
                 ) : (
                     <SaveBtn onClick={saveHandler}>save</SaveBtn>
                 ))}
-            <Coin onClick={getCoins}>{`${coin}₩`}</Coin>
+            <Coin onClick={getCoins}>
+                {`${coin}₩`}
+                {gatCha.current && (
+                    <span className="text-sm text-red-600">
+                        {gatChatText(gatCha.current)}
+                    </span>
+                )}
+            </Coin>
             <MyBag onClick={toggleBagOpen}>MyBag</MyBag>
             {routeItems.map((url) => (
                 <Link

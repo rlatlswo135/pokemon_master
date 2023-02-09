@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Router, { useRouter } from 'next/router';
 import { RecoilRoot } from 'recoil';
 import { AppProps } from 'next/app';
@@ -11,6 +11,7 @@ import '../global.css';
 export default function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
     const [loading, setLoading] = useState<boolean>(false);
+    const noPrivate = useMemo(() => ['/', '/how'], []);
 
     useEffect(() => {
         const start = () => {
@@ -50,7 +51,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <Container>
                     <Loading />
                 </Container>
-            ) : router.pathname === '/' ? (
+            ) : noPrivate.includes(router.pathname) ? (
                 <Component {...pageProps} />
             ) : (
                 <>

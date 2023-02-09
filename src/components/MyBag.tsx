@@ -119,8 +119,8 @@ export const MyBag = () => {
 };
 
 const Div = tw.div<{ $isOpen: boolean }>`
-flex items-center justify-evenly absolute z-40 bg-gold/80 w-full h-1/5 transition-all
-${(props) => (props.$isOpen ? 'top-4/5' : 'top-full')}
+flex items-center justify-evenly absolute z-40 bg-gold/80 w-full h-1/4 transition-all
+${(props) => (props.$isOpen ? 'top-3/4' : 'top-full')}
 `;
 
 const BreadWrap = tw.div`

@@ -19,7 +19,7 @@ export const HomeView = ({
     isOpen,
 }: HomeViewProps) => {
     return (
-        <>
+        <div className="relative animate-homeBlink z-50">
             <HomeDiv id="home">
                 <ButtonsDiv>
                     <MenuBtn onClick={clickGuestHandler}>Start</MenuBtn>
@@ -58,13 +58,13 @@ export const HomeView = ({
                     </ModalTextWrap>
                 </Modal>
             )}
-        </>
+        </div>
     );
 };
 
 const HomeDiv = tw.div`
-container w-screen h-screen min-w-full min-h-full text-lg
-bg-homeImage bg-no-repeat bg-center
+w-screen h-screen min-w-full min-h-full text-lg
+bg-homeImage bg-no-repeat bg-center animate-homeOpacity
 `;
 const ButtonsDiv = tw.div`
 absolute w-[30%] top-[65%] left-1/2 translate-x-[-50%] flex flex-col items-center justify-center

@@ -78,14 +78,6 @@ const Store = React.memo(() => {
         };
     }, []);
 
-    /*
-    1kimcj
-    페이지 이동간 Loading 확인 v
-    private route하기 (로그인정보 없으면 홈으로) v
-    firebase확인 v
-    절대경로 path alias 수정 v
-    너무 디렉토리 지저분한것같으니 그거 수정
-    */
     return (
         <StoreView
             loading={loading}
