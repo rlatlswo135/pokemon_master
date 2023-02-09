@@ -4,15 +4,13 @@
 ### 클릭으로 돈을벌고, 빵을산뒤, 도감을 채워보자! 서비스링크(https://pokemon-master-gk8p.vercel.app/)
 
 ### 사용
-- CRA / Craco / Vercel
+- CRA / Craco / Vercel -> Next.js / Vercel (2023/02/09)
 - recoil / tailwindCSS
 - firebase
 
 ### 개선해야할 것
-- 중복찾아서 제거 및 이미지 lazy로딩 방법
 - 스티커별 확률 별개로
-- 반응형 디자인 개선
 
-### Next.js로 마이그레이션 진행중...
+### Next.js로 마이그레이션 진행중... -> 2023/02/09 완료
 
 <img width="428" alt="사악한꼬부기" src="https://user-images.githubusercontent.com/81791674/211190831-49aa48bd-5f6c-457b-80ef-c81e2835b87d.png">
