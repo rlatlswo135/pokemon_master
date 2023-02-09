@@ -1,18 +1,21 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { GetStaticProps } from 'next';
-import * as _ from 'lodash';
-import { myPokeListState } from '../src/atoms';
-import { PAGINATION, POKE_NAME } from '../src/constants/pokePedia';
-import { MyPokeListValue } from '../src/types';
-import { getPercent } from '../src/util';
-import { PokePediaView } from '../views';
-import { getOneGenerationPokemon } from '../src/api/api';
-import { PokemonAPI } from '../src/types';
+import _ from 'lodash';
+import { myPokeListState } from '@atoms';
+import { PAGINATION, POKE_NAME } from '@constants/pokePedia';
+import { getPercent } from '@util';
+import { PokePediaView } from '@views';
+import { getOneGenerationPokemon } from '@api';
+import { PokemonAPI } from '@types';
 
-const PokePedia = ({ pokeList }) => {
+type PokePediaProps = {
+    pokeList: PokemonAPI;
+};
+
+const PokePedia = ({ pokeList }: PokePediaProps) => {
     const [pagination, setPagination] = useState<number>(1);
-    const myPoke = useRecoilValue(myPokeListState) as MyPokeListValue;
+    const myPoke = useRecoilValue(myPokeListState);
 
     const nextPageHandler = useCallback(
         () => setPagination((prev) => prev + 1),
@@ -38,7 +41,7 @@ const PokePedia = ({ pokeList }) => {
     return (
         <PokePediaView
             percent={percent}
-            pokemonList={pokeList}
+            pokemonList={pokeList.pokemon_species}
             myPoke={myPoke}
             prev={prev}
             next={next}
@@ -54,7 +57,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const pokeList: PokemonAPI = await getOneGenerationPokemon();
     return {
         props: {
-            pokeList: pokeList.pokemon_species,
+            pokeList: pokeList,
         },
     };
 };

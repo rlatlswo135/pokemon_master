@@ -1,7 +1,7 @@
-import { HowView } from './howView';
-import { HomeView } from './HomeView';
-import { MyPageView } from './MyPageView';
-import { PokePediaView } from './PokePediaView';
-import { StoreView } from './StoreView';
+import { HowView } from '@views/HowView';
+import { HomeView } from '@views/HomeView';
+import { MyPageView } from '@views/MyPageView';
+import { PokePediaView } from '@views/PokePediaView';
+import { StoreView } from '@views/StoreView';
 
 export { HowView, HomeView, MyPageView, PokePediaView, StoreView };

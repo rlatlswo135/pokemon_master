@@ -40,7 +40,7 @@ export const Modal = React.memo(({ children, closeHandler }: ModalProps) => {
 });
 
 const Container = tw.div`
-absolute top-0 z-50 py-40 w-full h-full
+absolute top-0 left-0 z-50 py-36 px-20 w-full h-full
 `;
 const ContentWrap = tw.div`
 max-w-full max-h-full relative bg-slate-500/90 flex flex-col items-center justify-evenly w-full h-full

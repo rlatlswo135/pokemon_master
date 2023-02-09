@@ -1,11 +1,22 @@
 import React from 'react';
 import Image from 'next/image';
 import tw from 'tailwind-styled-components';
-import { BREAD_IMAGES } from '../src/constants/bread';
-import { Modal, Container } from '../src/components/common';
-import { LOADING_IMAGES } from '../src/constants';
-import { priceFormat } from '../src/util';
+import { BREAD_IMAGES } from '@constants/bread';
+import { Modal } from '@components/common';
+import { LOADING_IMAGES } from '@constants';
+import { priceFormat } from '@util';
+import { BuyBreadInfo, GetBread, OneGenBreads } from '@types';
 
+type StoreViewProps = {
+    loading: boolean;
+    breadKeys: OneGenBreads[];
+    breadIdx: number;
+    result: OneGenBreads[];
+    coin: number;
+    setResult: React.Dispatch<React.SetStateAction<OneGenBreads[]>>;
+    buyBreadInfo: BuyBreadInfo;
+    getBread: GetBread;
+};
 export const StoreView = ({
     setResult,
     coin,
@@ -14,45 +25,48 @@ export const StoreView = ({
     buyBreadInfo,
     getBread,
     result,
-}) => {
+    breadKeys,
+}: StoreViewProps) => {
     return (
         <>
-            <Container>
-                <SubContainer>
-                    <ImageWrap>
-                        {loading ? (
-                            <LoadingWrap>
-                                <Image alt="error" src={LOADING_IMAGES} fill />
-                                <LoadingSpan>Loading...</LoadingSpan>
-                            </LoadingWrap>
-                        ) : (
+            <SubContainer>
+                <ImageWrap>
+                    {loading ? (
+                        <LoadingWrap>
                             <Image
-                                src={
-                                    BREAD_IMAGES[
-                                        Object.keys(BREAD_IMAGES)[breadIdx]
-                                    ]
-                                }
-                                priority
                                 alt="error"
-                                sizes="(max-width: 768px) 50vw,
+                                src={LOADING_IMAGES}
+                                fill
+                                priority
+                                sizes="(max-width: 768px) 20vw,
+                                        (max-width: 1200px) 15vw,
+                                        10vw"
+                            />
+                            <LoadingSpan>Loading...</LoadingSpan>
+                        </LoadingWrap>
+                    ) : (
+                        <Image
+                            src={BREAD_IMAGES[breadKeys[breadIdx]]}
+                            priority
+                            alt="error"
+                            sizes="(max-width: 768px) 50vw,
                                         (max-width: 1200px) 40vw,
                                         30vw"
-                            />
-                        )}
-                    </ImageWrap>
-                    <BuyBreadWrap>
-                        {buyBreadInfo.map(({ quan, price }) => {
-                            return (
-                                <Button
-                                    key={`store-btn-${price}`}
-                                    onClick={() => getBread(quan, price)}
-                                    $deny={coin < price}
-                                >{`x${quan} (${priceFormat(price)}￦)`}</Button>
-                            );
-                        })}
-                    </BuyBreadWrap>
-                </SubContainer>
-            </Container>
+                        />
+                    )}
+                </ImageWrap>
+                <BuyBreadWrap>
+                    {buyBreadInfo.map(({ quan, price }) => {
+                        return (
+                            <Button
+                                key={`store-btn-${price}`}
+                                onClick={() => getBread(quan, price)}
+                                $deny={coin < price}
+                            >{`x${quan} (${priceFormat(price)}￦)`}</Button>
+                        );
+                    })}
+                </BuyBreadWrap>
+            </SubContainer>
             {!!result.length && (
                 <Modal closeHandler={() => setResult([])}>
                     <div
@@ -88,10 +102,11 @@ export const StoreView = ({
 };
 
 const SubContainer = tw.div`
-container flex-col flex justify-center items-center w-full h-full p-5 bg-sub 
+flex-col flex justify-center items-center w-full h-full p-5 bg-sub 
 `;
 const ImageWrap = tw.div`
-rounded-xl border-8 w-[40%] h-[30%] flex items-center border-black/30 bg-slate-500/80 justify-center
+rounded-xl border-8 w-1/2 h-1/2 flex items-center
+border-black/30 bg-slate-500/80 justify-center
 `;
 
 const Button = tw.button<{ $deny?: boolean }>`

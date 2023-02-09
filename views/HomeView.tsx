@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import Image from 'next/image';
 import tw from 'tailwind-styled-components';
 import Link from 'next/link';
-import { Modal } from '../src/components/common/Modal';
+import { Modal } from '@components/common';
 
+type HomeViewProps = {
+    clickGuestHandler: () => void;
+    loginGoogle: () => Promise<void>;
+    closeModal: () => void;
+    loginGuest: () => void;
+    isOpen: boolean;
+};
 export const HomeView = ({
     clickGuestHandler,
     loginGoogle,
     closeModal,
     loginGuest,
     isOpen,
-}) => {
+}: HomeViewProps) => {
     return (
         <>
             <HomeDiv id="home">

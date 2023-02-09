@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, bagState, myPokeListState } from '../src/atoms';
-import { getPercent } from '../src/util';
-import { POKE_NAME } from '../src/constants/pokePedia';
-import { deleteDocument } from '../src/firebase/store';
-import { deleteAuth, signOutAuth } from '../src/firebase/auth';
-import { MyPokeListValue, BagState } from '../src/types';
-import { MyPageView } from '../views/MyPageView';
+import { getPercent } from '@util';
+import { POKE_NAME } from '@constants/pokePedia';
+import { deleteDocument } from '@fb/store';
+import { deleteAuth, signOutAuth } from '@fb/auth';
+import { MyPokeListValue, BagState, PageInfo } from '@types';
+import { MyPageView } from '@views';
 
 const MyPage = React.memo(() => {
     const { value: bag } = useRecoilValue(bagState) as BagState;
@@ -15,13 +15,12 @@ const MyPage = React.memo(() => {
     const [{ displayName, photoURL, uid }, setUser] = useRecoilState(userState);
     const resetUser = useResetRecoilState(userState);
 
-    const test = Object.values(myPoke);
     const percent = getPercent(
         Object.values(myPoke).filter((a) => a > 0).length,
         _.size(POKE_NAME)
     );
 
-    const pageInfo = useMemo(
+    const pageInfo: PageInfo = useMemo(
         () => ({
             USER: displayName || 'Guest #',
             BREAD: Object.values(bag).reduce((init, num) => init + num, 0),
@@ -31,7 +30,9 @@ const MyPage = React.memo(() => {
     );
 
     const signOut = useCallback(async () => {
-        const result = await signOutAuth();
+        if (uid && uid !== 'GUSET') {
+            const result = await signOutAuth();
+        }
         resetUser();
     }, []);
 

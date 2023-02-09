@@ -1,4 +1,13 @@
-import { BREADS } from 'src/constants/bread';
+import { BREADS } from '@constants/bread';
+
+export type OneGenBreads =
+    | 'digda'
+    | 'fire'
+    | 'ghost'
+    | 'pika'
+    | 'purin'
+    | 'rocket'
+    | 'tutle';
 
 export type BuyBread = {
     price: number;
@@ -13,8 +22,9 @@ export type BagState = {
     value: BagValue;
 };
 
-// 이거 타입 수정이 좀 필요해보임;
-export type BreadImages = Record<BagKey, string>;
+export type BreadImages = {
+    [key in OneGenBreads]: string;
+};
 
 export type MyPokeListValue = Record<number, number>;
 
@@ -24,7 +34,7 @@ export type DefaultData = {
     pokeList: { [key: number]: number };
 };
 
-type NameAndUrl = {
+export type NameAndUrl = {
     name: string;
     url: string;
 };
@@ -42,3 +52,15 @@ export type PokemonAPI = {
     types: NameAndUrl[];
     version_groups: NameAndUrl[];
 };
+
+export type PageInfo = {
+    USER: string;
+    BREAD: number;
+    POKEMON: string;
+};
+
+export type GetBread = (quan: number, price: number) => void;
+export type BuyBreadInfo = {
+    quan: number;
+    price: number;
+}[];

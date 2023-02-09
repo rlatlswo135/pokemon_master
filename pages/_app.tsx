@@ -1,12 +1,35 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Router, { useRouter } from 'next/router';
 import { RecoilRoot } from 'recoil';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MyBag, Save, Header } from '../src/components';
+import { Container, Loading } from '@components/common';
+import { PrivateRouter, MyBag, Save, Header } from '@components';
 import '../global.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+    const router = useRouter();
+    const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        const start = () => {
+            setLoading(true);
+        };
+        const end = () => {
+            setLoading(false);
+        };
+
+        Router.events.on('routeChangeStart', start);
+        Router.events.on('routeChangeComplete', end);
+        Router.events.on('routeChangeError', end);
+
+        return () => {
+            Router.events.off('routeChangeStart', start);
+            Router.events.off('routeChangeComplete', end);
+            Router.events.off('routeChangeError', end);
+        };
+    }, []);
     return (
         <RecoilRoot>
             <Head>
@@ -23,9 +46,23 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 />
             </Head>
             <Header />
-            <Component {...pageProps} />
-            <MyBag />
-            <Save />
+            {loading ? (
+                <Container>
+                    <Loading />
+                </Container>
+            ) : router.pathname === '/' ? (
+                <Component {...pageProps} />
+            ) : (
+                <>
+                    <PrivateRouter>
+                        <Container>
+                            <Component {...pageProps} />
+                        </Container>
+                    </PrivateRouter>
+                    <MyBag />
+                    <Save />
+                </>
+            )}
         </RecoilRoot>
     );
 }

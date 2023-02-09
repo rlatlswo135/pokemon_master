@@ -31,6 +31,10 @@ module.exports = {
                 '4/5': '80%',
             },
         },
+        screens: {
+            tablet: '640px',
+            laptop: '1024px',
+        },
     },
     plugins: [],
 };

@@ -2,14 +2,14 @@
 import React, { useState, useRef, useCallback, Suspense } from 'react';
 import tw from 'tailwind-styled-components';
 import Image from 'next/image';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { useRecoilState } from 'recoil';
-import { Img, Modal } from './common';
-import { BREADS } from '../constants/bread';
-import { IMAGE_URL, POKE_NAME } from '../constants/pokePedia';
-import { makePokeId } from '../util';
-import { bagState, myPokeListState } from '../atoms';
-import { BagKey } from '../types';
+import { Img, Modal } from '@components/common';
+import { BREADS } from '@constants/bread';
+import { IMAGE_URL, POKE_NAME } from '@constants/pokePedia';
+import { makePokeId } from '@util';
+import { bagState, myPokeListState } from '@atoms';
+import { BagKey } from '@types';
 
 export const MyBag = () => {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -56,7 +56,6 @@ export const MyBag = () => {
             }}
         >
             <Div $isOpen={isOpen}>
-                {/* <Breads button={breadBtnProps} grayscale /> */}
                 {BREADS.map((bread) => {
                     const quan = value[bread];
                     return (
@@ -97,9 +96,15 @@ export const MyBag = () => {
                                     : 'justify-center'
                             }`}
                         >
-                            {result.map((item) => (
-                                <ModalResultWrap>
-                                    <Img src={`${IMAGE_URL}/${item}.png`} />
+                            {result.map((item, idx) => (
+                                <ModalResultWrap key={`pokemon-${item}-${idx}`}>
+                                    <Image
+                                        alt="error"
+                                        priority
+                                        width={500}
+                                        height={500}
+                                        src={`${IMAGE_URL}/${item}.png`}
+                                    />
                                     <ModalPokeName>
                                         {POKE_NAME[item]}
                                     </ModalPokeName>
@@ -132,8 +137,8 @@ absolute top-0 right-0 z-50
 `;
 
 const ModalResultWrap = tw.div`
-relative flex flex-col flex-[0.3] items-center
+relative flex flex-col flex-[0.3] items-center w-full
 `;
 const ModalPokeName = tw.span`
-relative top-[-30px] font-bold text-2xl
+font-bold text-2xl
 `;

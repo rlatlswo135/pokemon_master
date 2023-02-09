@@ -3,9 +3,9 @@ import tw from 'tailwind-styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { coinState, bagState, userState, myPokeListState } from '../atoms';
-import { LUCKY, SUPER_LUCKY } from '../constants';
-import { updateDocument } from '../firebase/store';
+import { coinState, bagState, userState, myPokeListState } from '@atoms';
+import { LUCKY, SUPER_LUCKY } from '@constants';
+import { updateDocument } from '@fb/store';
 
 export const Header = () => {
     const { pathname: pathName } = useRouter();
@@ -40,7 +40,7 @@ export const Header = () => {
             setLoading(true);
             const result = await updateDocument('data', currentUser.uid, {
                 coin,
-                bag,
+                bag: { ...bag.value },
                 pokeList,
             });
             setLoading(false);
@@ -86,6 +86,7 @@ border-2 p-2 border-goldLine bg-gold rounded-2xl flex-[0.5] hover:text-red-600
 const MyBag = tw.button`
 border-2 border-red-300 p-2 bg-red-200 rounded-2xl hover:text-red-600
 `;
+
 const LoadingPing = tw.div`
 animate-ping p-4 rounded-full border-8
 `;

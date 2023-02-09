@@ -1,45 +1,62 @@
-import React, { useCallback, useMemo } from 'react';
+import React from 'react';
 import tw from 'tailwind-styled-components';
 import Image from 'next/image';
-import { Img, Container } from '../src/components/common';
+import { PageInfo } from '@types';
 
-export const MyPageView = ({ photoURL, pageInfo, signOut, deleteAccount }) => {
+type MyPageViewProps = {
+    photoURL: string;
+    pageInfo: PageInfo;
+    signOut: () => Promise<void>;
+    deleteAccount: () => Promise<void>;
+};
+export const MyPageView = ({
+    photoURL,
+    pageInfo,
+    signOut,
+    deleteAccount,
+}: MyPageViewProps) => {
     return (
-        <Container
-        // addstyle="px-5 flex justify-center"
-        // image="bg-defaultImage"
-        // id="myPage"
-        >
-            <SubContainer>
-                <ImageWrap>
-                    <Img src={photoURL || '/profile.png'} />
-                </ImageWrap>
-                <div>
-                    {Object.entries(pageInfo).map((item) => {
-                        const [key, value]: any = item;
-                        return (
-                            <CategoryWrap key={`info-${key}`}>
-                                <Category>{`${key} : `}</Category>
-                                <span>{value}</span>
-                            </CategoryWrap>
-                        );
-                    })}
-                </div>
-                <div className="flex w-[50%] justify-evenly">
-                    <SignOut onClick={signOut}>SignOut</SignOut>
-                    <SignOut onClick={deleteAccount}>Delete Account</SignOut>
-                </div>
-            </SubContainer>
-        </Container>
+        <SubContainer>
+            <ImageWrap>
+                <Image
+                    priority
+                    alt="error"
+                    sizes="(max-width: 768px) 20vw,
+                    (max-width: 1200px) 15vw,
+                    10vw"
+                    fill
+                    src={photoURL || '/profile.png'}
+                />
+            </ImageWrap>
+            <div>
+                {Object.entries(pageInfo).map((item) => {
+                    const [key, value]: any = item;
+                    return (
+                        <CategoryWrap key={`info-${key}`}>
+                            <Category>{`${key} : `}</Category>
+                            <span>{value}</span>
+                        </CategoryWrap>
+                    );
+                })}
+            </div>
+            <div className="flex w-[50%] justify-evenly">
+                <SignOut onClick={signOut}>SignOut</SignOut>
+                <SignOut onClick={deleteAccount}>Delete Account</SignOut>
+            </div>
+        </SubContainer>
     );
 };
 
 const SubContainer = tw.div`
-container flex flex-col relative w-full h-full bg-subContainer items-center justify-center py-24
+flex flex-col relative w-full h-full
+bg-subContainer items-center justify-center
+laptop:py-8
 `;
 
 const ImageWrap = tw.div`
-w-[40%] h-[40%] rounded-full bg-slate-400/80 overflow-hidden
+relative rounded-full bg-slate-400/80 overflow-hidden
+tablet:w-44 tablet:h-44
+laptop:w-80 laptop:h-80
 `;
 const CategoryWrap = tw.div`
 mt-12
@@ -48,5 +65,8 @@ const Category = tw.span`
 text-xl font-bold
 `;
 const SignOut = tw.button`
-mt-20 px-10 py-6 bg-slate-500 rounded-2xl hover:bg-goldLine text-red-200
+relative mt-20 px-10 py-6 bg-slate-500 rounded-2xl text-red-200
+hover:bg-goldLine
+laptop:px-10 laptop:py-5
+tablet:px-6 tablet:py-3
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Container } from '../src/components/common';
+import { Container } from '@components/common';
 
 export const HowView = () => {
     return (

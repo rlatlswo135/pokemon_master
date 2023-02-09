@@ -1,12 +1,36 @@
 {
     "compilerOptions": {
-        "baseUrl": "./",
+        "baseUrl": ".",
         "paths": {
-            "@": ["/*"],
-            "@pages": ["pages/*"],
-            "@public": ["public/*"],
-            "@types": ["types/*"],
-            "@constants": ["constants/*"]
+            "@public": ["public"],
+            "@public/*": ["public/*"],
+
+            "@constants": ["src/constants"],
+            "@constants/*": ["src/constants/*"],
+
+            "@views": ["views"],
+            "@views/*": ["views/*"],
+
+            "@src": ["src"],
+            "@src/*": ["src/*"],
+
+            "@components": ["src/components"],
+            "@components/*": ["src/components/*"],
+
+            "@fb": ["src/fb"],
+            "@fb/*": ["src/fb/*"],
+
+            "@types": ["src/types"],
+            "@types/*": ["src/types/*"],
+
+            "@util": ["src/util"],
+            "@util/*": ["src/util/*"],
+
+            "@atoms": ["src/atoms"],
+            "@atoms/*": ["src/atoms/*"],
+
+            "@api": ["src/api"],
+            "@api/*": ["src/api/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
@@ -25,6 +49,6 @@
         "jsx": "preserve",
         "incremental": true
     },
-    "include": ["src", "public", "constants", "types"],
+    "include": ["src", "pages", "views"],
     "exclude": ["node_modules", ".next"]
 }
