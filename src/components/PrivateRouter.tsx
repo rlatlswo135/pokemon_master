@@ -11,7 +11,6 @@ export const PrivateRouter = ({ children }: PrivateRouterProps) => {
     const { uid } = useRecoilValue(userState);
 
     useEffect(() => {
-        console.log('````````````uid````````````', uid);
         if (!uid) {
             router.push('/');
         }
