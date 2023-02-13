@@ -17,7 +17,7 @@ export const Header = () => {
 
     const [loading, setLoading] = useState<Boolean>(false);
 
-    const routeItems = useMemo(() => ['myPage', 'pokePedia', 'store'], []);
+    const routeItems = useMemo(() => ['mypage', 'pokepedia', 'store'], []);
     const isGuest = useMemo(() => currentUser.uid === 'GUEST', [currentUser]);
 
     const gatCha = useRef<null | 'LUCKY' | 'SUPER_LUCKY'>(null);
