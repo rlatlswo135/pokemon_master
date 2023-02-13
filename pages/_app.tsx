@@ -55,11 +55,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <Component {...pageProps} />
             ) : (
                 <>
-                    {/* <PrivateRouter> */}
-                    <Container>
-                        <Component {...pageProps} />
-                    </Container>
-                    {/* </PrivateRouter> */}
+                    <PrivateRouter>
+                        <Container>
+                            <Component {...pageProps} />
+                        </Container>
+                    </PrivateRouter>
                     <MyBag />
                     <Save />
                 </>
