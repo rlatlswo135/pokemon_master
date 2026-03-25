@@ -1,19 +1,16 @@
-import React, { SetStateAction } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import tw from 'tailwind-styled-components';
 import Link from 'next/link';
 import { Modal } from '@components/common';
 
 type HomeViewProps = {
     clickGuestHandler: () => void;
-    loginGoogle: () => Promise<void>;
     closeModal: () => void;
     loginGuest: () => void;
     isOpen: boolean;
 };
 export const HomeView = ({
     clickGuestHandler,
-    loginGoogle,
     closeModal,
     loginGuest,
     isOpen,
@@ -30,17 +27,11 @@ export const HomeView = ({
                         />
                         How To Play
                     </MenuBtn>
-                    <LoginGoogle onClick={loginGoogle}>
-                        <Image src="/signGoogle.png" fill alt="error" />
-                    </LoginGoogle>
                 </ButtonsDiv>
             </HomeDiv>
             {isOpen && (
                 <Modal closeHandler={closeModal}>
                     <ModalTextWrap>
-                        <p className="text-4xl font-bold text-red-300">
-                            게스트로 로그인시 저장버튼은 활성화 되지 않습니다
-                        </p>
                         <p className="text-4xl font-bold mt-10">
                             계속 진행하시려면 Go! 버튼을 눌러주세요.
                         </p>
@@ -71,9 +62,6 @@ absolute w-[30%] top-[65%] left-1/2 translate-x-[-50%] flex flex-col items-cente
 `;
 const MenuBtn = tw.button`
 relative w-full h-16 bg-gold hover:bg-orange-300 rounded-2xl mt-4
-`;
-const LoginGoogle = tw.button`
-relative w-full h-16 hover:bg-orange-300 rounded-2xl mt-4
 `;
 const ModalTextWrap = tw.div`
 flex flex-col items-center

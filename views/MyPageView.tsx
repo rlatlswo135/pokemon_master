@@ -6,8 +6,8 @@ import { PageInfo } from '@types';
 type MyPageViewProps = {
     photoURL: string;
     pageInfo: PageInfo;
-    signOut: () => Promise<void>;
-    deleteAccount: () => Promise<void>;
+    signOut: () => void;
+    deleteAccount: () => void;
 };
 export const MyPageView = ({
     photoURL,

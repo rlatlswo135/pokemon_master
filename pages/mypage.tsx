@@ -1,19 +1,17 @@
 /* eslint-disable react/display-name */
 import React, { useCallback, useMemo } from 'react';
 import _ from 'lodash';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, bagState, myPokeListState } from '../src/atoms';
 import { getPercent } from '@util';
 import { POKE_NAME } from '@constants/pokePedia';
-import { deleteDocument } from '@fb/store';
-import { deleteAuth, signOutAuth } from '@fb/auth';
 import { MyPokeListValue, BagState, PageInfo } from '@types';
 import { MyPageView } from '@views';
 
 const MyPage = React.memo(() => {
     const { value: bag } = useRecoilValue(bagState) as BagState;
     const myPoke = useRecoilValue(myPokeListState) as MyPokeListValue;
-    const [{ displayName, photoURL, uid }] = useRecoilState(userState);
+    const { displayName, photoURL } = useRecoilValue(userState);
     const resetUser = useResetRecoilState(userState);
 
     const percent = getPercent(
@@ -30,21 +28,13 @@ const MyPage = React.memo(() => {
         [displayName, bag, percent]
     );
 
-    const signOut = useCallback(async () => {
-        if (uid && uid !== 'GUSET') {
-            const result = await signOutAuth();
-        }
+    const signOut = useCallback(() => {
         resetUser();
-    }, []);
+    }, [resetUser]);
 
-    const deleteAccount = useCallback(async () => {
-        if (uid && uid !== 'GUEST') {
-            // db에 데이터 제거
-            const delDoc = await deleteDocument('data', uid);
-            const delAuth = await deleteAuth();
-        }
+    const deleteAccount = useCallback(() => {
         resetUser();
-    }, [uid]);
+    }, [resetUser]);
 
     return (
         <MyPageView

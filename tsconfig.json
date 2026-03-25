@@ -17,10 +17,7 @@
             "@components": ["src/components"],
             "@components/*": ["src/components/*"],
 
-            "@fb": ["src/fb"],
-            "@fb/*": ["src/fb/*"],
-
-            "@types": ["src/types"],
+"@types": ["src/types"],
             "@types/*": ["src/types/*"],
 
             "@util": ["src/util"],
